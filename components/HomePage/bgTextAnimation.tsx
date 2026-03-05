@@ -1,0 +1,24 @@
+'use client'
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import React, { useRef } from 'react';
+gsap.registerPlugin(useGSAP);
+
+const BgTextAnimation = () => {
+    const bgTextRef = useRef<HTMLDivElement | null>(null)
+    return (
+        <div className="relative inline-block" ref={bgTextRef}>
+            <p
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 select-none text-[6vw] font-extrabold uppercase font-noto text-transparent [-webkit-text-stroke:3px_black]"
+            >
+                Quality You Can Trust
+            </p>
+            <p className="relative text-[6vw] font-extrabold uppercase font-noto text-secondary">
+                Quality You Can Trust
+            </p>
+        </div>
+    );
+};
+
+export default BgTextAnimation;
