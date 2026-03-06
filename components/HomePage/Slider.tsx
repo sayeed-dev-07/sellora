@@ -1,5 +1,4 @@
-/* eslint-disable react-hooks/refs */
-'use client'
+﻿'use client'
 
 import { useRef, useState } from "react"
 import { useGSAP } from "@gsap/react"
@@ -7,31 +6,25 @@ import gsap from "gsap"
 import { Draggable } from "gsap/all"
 import InertiaPlugin from "gsap/InertiaPlugin"
 import Image from "next/image"
-
+import { data } from "@/public/data/SliderData"
 gsap.registerPlugin(Draggable, InertiaPlugin)
 
 const AUTOPLAY_DELAY = 4000
 
-const Slider = () => {
-
+const Slider = ({ homeDone }: { homeDone: boolean }) => {
   const container = useRef<HTMLDivElement | null>(null)
   const track = useRef<HTMLDivElement | null>(null)
+  const handSection = useRef<HTMLDivElement | null>(null)
   const handViewport = useRef<HTMLDivElement | null>(null)
   const handTrack = useRef<HTMLDivElement | null>(null)
+  const dotsRef = useRef<HTMLDivElement | null>(null)
   const draggableRef = useRef<Draggable | null>(null)
   const autoplayRef = useRef<ReturnType<typeof setInterval> | null>(null)
-  const centerCardRef = useRef<(index: number, animate?: boolean) => void>(() => { })
-  const resetAutoplayRef = useRef<() => void>(() => { })
+  const centerCardRef = useRef<(index: number, animate?: boolean) => void>(() => {})
+  const resetAutoplayRef = useRef<() => void>(() => {})
+  const entrancePlayedRef = useRef(false)
 
-  const data = [
-    { id: 1, name: "Item 1", bgUrl: "https://gunte-lab.kachiboshi.co.jp/img/home/hero-slide05-photo@2x.jpg", handUrl: "https://gunte-lab.kachiboshi.co.jp/img/home/hero-slide05-hand@2x.png" },
-    { id: 2, name: "Item 2", bgUrl: "https://gunte-lab.kachiboshi.co.jp/img/home/hero-slide06-photo@2x.jpg", handUrl: "https://gunte-lab.kachiboshi.co.jp/img/home/hero-slide06-hand@2x.png" },
-    { id: 3, name: "Item 3", bgUrl: "https://gunte-lab.kachiboshi.co.jp/img/home/hero-slide07-photo@2x.jpg", handUrl: "https://gunte-lab.kachiboshi.co.jp/img/home/hero-slide07-hand@2x.png" },
-    { id: 4, name: "Item 4", bgUrl: "https://gunte-lab.kachiboshi.co.jp/img/home/hero-slide01-photo@2x.jpg", handUrl: "https://gunte-lab.kachiboshi.co.jp/img/home/hero-slide01-hand@2x.png" },
-    { id: 5, name: "Item 5", bgUrl: "https://gunte-lab.kachiboshi.co.jp/img/home/hero-slide02-photo@2x.jpg", handUrl: "https://gunte-lab.kachiboshi.co.jp/img/home/hero-slide02-hand@2x.png" },
-    { id: 6, name: "Item 6", bgUrl: "https://gunte-lab.kachiboshi.co.jp/img/home/hero-slide03-photo@2x.jpg", handUrl: "https://gunte-lab.kachiboshi.co.jp/img/home/hero-slide03-hand@2x.png" },
-    { id: 7, name: "Item 7", bgUrl: "https://gunte-lab.kachiboshi.co.jp/img/home/hero-slide04-photo@2x.jpg", handUrl: "https://gunte-lab.kachiboshi.co.jp/img/home/hero-slide04-hand@2x.png" }
-  ]
+ 
 
   const indexRef = useRef(Math.floor(data.length / 2))
   const [activeIndex, setActiveIndex] = useState(indexRef.current)
@@ -109,7 +102,7 @@ const Slider = () => {
 
         const rotate = dist * 14
         const scale = 0.72 + proximity * 1.5
-        const y = -2 - proximity * 32
+        const y = -2 - proximity * -30
         const overlapOpacity = proximity
         const overlapY = (1 - proximity) * 8
         const overlapScale = 0.72 + proximity * 0.38
@@ -245,100 +238,166 @@ const Slider = () => {
     }
   }, { scope: container })
 
+  useGSAP(() => {
+    if (!track.current || !handSection.current || !dotsRef.current) return
+
+    if (!homeDone) {
+      gsap.set(dotsRef.current, { autoAlpha: 0, y: 8 })
+      gsap.set(track.current, { autoAlpha: 0, y: 72 })
+      gsap.set(handSection.current, { autoAlpha: 0, x: -120 })
+      return
+    }
+
+    if (entrancePlayedRef.current) return
+    entrancePlayedRef.current = true
+
+    const tl = gsap.timeline()
+
+    tl.to(dotsRef.current, {
+      autoAlpha: 1,
+      y: 0,
+      duration: 0.35,
+      ease: "power2.out"
+    })
+      .to(track.current, {
+        autoAlpha: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power3.out"
+      }, "+=0.05")
+      .to(handSection.current, {
+        autoAlpha: 1,
+        x: 0,
+        duration: 0.75,
+        ease: "power3.out"
+      }, "-=0.2")
+  }, { scope: container, dependencies: [homeDone] })
+
   const goTo = (index: number) => {
     centerCardRef.current(index)
     resetAutoplayRef.current()
   }
 
   return (
-
-    <div ref={container} className="overflow-hidden w-full pb-6">
-
-      {/* MAIN SLIDER */}
-
-      <div ref={track} className="flex gap-8 lg:gap-0">
-
-        {data.map((item) => (
-
-          <div
-            key={item.id}
-            className="main-card shrink-0 flex items-center justify-center w-[70vw] lg:w-[50vw] h-[60vh]"
-          >
-            <div className="relative h-full overflow-hidden border-2 border-background w-full max-w-[450px] md:max-w-none md:w-[550px]">
-              <Image
-                src={item.bgUrl}
-                alt={item.name}
-                fill
-                className="object-cover"
-                sizes="(min-width: 1024px) 550px, 100vw"
-              />
-            </div>
+    <div ref={container} className="w-full pb-6  relative z-10"> {/* FIX: added overflow-x-hidden just in case the track spills over the page width */}
+  {/* MAIN SLIDER */}
+  {/* FIX: Added arbitrary classes to hide the scrollbar if this track is natively scrollable */}
+  <div 
+    ref={track} 
+    className="flex gap-8 xl:gap-0 opacity-0  translate-y-[72px] "
+  >
+    {data.map((item) => (
+      <div
+        key={item.id}
+        className="main-card shrink-0 flex items-center justify-center w-[70vw] lg:w-[50vw] overflow-visible h-[60vh]"
+      >
+        {/* Important: overflow-visible here allows the text to pop out the top */}
+        <div className="relative h-full w-full max-w-[450px] md:max-w-none  md:w-[550px]">
+          <div className="absolute inset-0">
+            <Image
+              src={item.bgUrl}
+              alt={item.name}
+              fill
+              className="object-cover"
+              sizes="(min-width: 1024px) 550px, 100vw"
+            />
           </div>
 
-        ))}
+          <svg
+            className="absolute inset-0 w-full z-50 h-full pointer-events-none overflow-visible"
+            viewBox="0 0 540 540"
+            preserveAspectRatio="xMinYMin slice"
+          >
+            {/* Card Border Path */}
+            <path
+              d="M0 542 V36 A36 36 0 0 1 36 0 H540"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              vectorEffect="non-scaling-stroke"
+            />
 
-      </div>
+            {/* Adjusted Text Path: Moves the horizontal line to y=0 */}
+            <path
+              id={`text-path-${item.id}`}
+              d="M3 540 V52 A52 52 0 0 1 55 0 H540" 
+              fill="none"
+            />
 
-      {/* HAND TRACK (SYNCHRONIZED ONLY) */}
-
-      <div ref={handViewport} className="relative -mt-10 md:-mt-14 w-full  pointer-events-none">
-        <div ref={handTrack} className="flex">
-
-          {data.map((item) => {
-            return (
-              <div
-                key={item.id}
-                className="hand-card shrink-0 w-1/3 h-[145px] flex items-end justify-center"
-              >
-                <div className="relative">
-                  <div
-                    className="hand-inner relative  h-[92px] w-[92px]"
-                  >
-                    <Image
-                      src={item.handUrl}
-                      alt={item.name}
-                      fill
-                      className="object-contain p-2"
-                      sizes="108px"
-                    />
-                  </div>
-
-
-                </div>
-              </div>
-            )
-          })}
-
+            <text
+              className="fill-secondary text-xl font-semibold"
+              letterSpacing="2"
+              /* This 'middle' value ensures the 50/50 vertical split on the path */
+              dominantBaseline="middle"
+              stroke="rgba(0, 0, 0, 0.8)"
+              strokeWidth="2"
+              strokeLinejoin="round"
+              paintOrder="stroke fill"
+            >
+              <textPath href={`#text-path-${item.id}`} startOffset="270">
+                {item.name}
+              </textPath>
+            </text>
+          </svg>
         </div>
       </div>
+    ))}
+  </div>
 
-      {/* DOTS */}
-
-      <div className="flex relative z-50 justify-center gap-3 mt-4">
-
-        {data.map((_, i) => {
-
-          const active = i === activeIndex
-
+  {/* HAND TRACK */}
+  <div ref={handSection} className="opacity-0 -translate-x-[120px]">
+    <div
+      ref={handViewport}
+      className="relative -mt-10 md:-mt-14 w-full pointer-events-none"
+    >
+      <div ref={handTrack} className="flex">
+        {data.map((item) => {
           return (
-            <button
-              key={i}
-              onClick={() => goTo(i)}
-              className={`h-3 rounded-full transition-all duration-300 ${active
-                ? "w-10 bg-black"
-                : "w-5 bg-secondary border border-background"
-                }`}
-            />
+            <div
+              key={item.id}
+              className="hand-card shrink-0 w-1/3 h-[145px] flex items-end justify-center"
+            >
+              <div className="relative">
+                <div className="hand-inner relative md:h-[152px] md:w-38 sm:h-32.5 sm:w-[130px] h-25 w-[100px]">
+                  <Image
+                    src={item.handUrl}
+                    alt={item.name}
+                    fill
+                    className="object-contain p-2"
+                    sizes="100vw"
+                  />
+                </div>
+              </div>
+            </div>
           )
-
         })}
-
       </div>
-
     </div>
+  </div>
 
+  {/* DOTS */}
+  <div
+    ref={dotsRef}
+    className="flex relative z-50 justify-center gap-3 mt-4 opacity-0 translate-y-2"
+  >
+    {data.map((_, i) => {
+      const active = i === activeIndex
+
+      return (
+        <button
+          key={i}
+          onClick={() => goTo(i)}
+          className={`h-2 sm:h-3 rounded-full transition-all cursor-pointer duration-300 ${
+            active
+              ? "sm:w-10 w-7 bg-black"
+              : "sm:w-5 w-3 bg-secondary border border-background"
+          }`}
+        />
+      )
+    })}
+  </div>
+</div>
   )
-
 }
 
 export default Slider
