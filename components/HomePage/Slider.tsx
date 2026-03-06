@@ -20,11 +20,11 @@ const Slider = ({ homeDone }: { homeDone: boolean }) => {
   const dotsRef = useRef<HTMLDivElement | null>(null)
   const draggableRef = useRef<Draggable | null>(null)
   const autoplayRef = useRef<ReturnType<typeof setInterval> | null>(null)
-  const centerCardRef = useRef<(index: number, animate?: boolean) => void>(() => {})
-  const resetAutoplayRef = useRef<() => void>(() => {})
+  const centerCardRef = useRef<(index: number, animate?: boolean) => void>(() => { })
+  const resetAutoplayRef = useRef<() => void>(() => { })
   const entrancePlayedRef = useRef(false)
 
- 
+
 
   const indexRef = useRef(Math.floor(data.length / 2))
   const [activeIndex, setActiveIndex] = useState(indexRef.current)
@@ -280,123 +280,141 @@ const Slider = ({ homeDone }: { homeDone: boolean }) => {
 
   return (
     <div ref={container} className="w-full pb-6  relative z-10"> {/* FIX: added overflow-x-hidden just in case the track spills over the page width */}
-  {/* MAIN SLIDER */}
-  {/* FIX: Added arbitrary classes to hide the scrollbar if this track is natively scrollable */}
-  <div 
-    ref={track} 
-    className="flex gap-8 xl:gap-0 opacity-0  translate-y-[72px] "
-  >
-    {data.map((item) => (
+      {/* MAIN SLIDER */}
+      {/* FIX: Added arbitrary classes to hide the scrollbar if this track is natively scrollable */}
       <div
-        key={item.id}
-        className="main-card shrink-0 flex items-center justify-center w-[70vw] lg:w-[50vw] overflow-visible h-[60vh]"
+        ref={track}
+        className="flex gap-8 xl:gap-0 opacity-0  translate-y-[72px] "
       >
-        {/* Important: overflow-visible here allows the text to pop out the top */}
-        <div className="relative h-full w-full max-w-[450px] md:max-w-none  md:w-[550px]">
-          <div className="absolute inset-0">
-            <Image
-              src={item.bgUrl}
-              alt={item.name}
-              fill
-              className="object-cover"
-              sizes="(min-width: 1024px) 550px, 100vw"
-            />
-          </div>
-
-          <svg
-            className="absolute inset-0 w-full z-50 h-full pointer-events-none overflow-visible"
-            viewBox="0 0 540 540"
-            preserveAspectRatio="xMinYMin slice"
+        {data.map((item) => (
+          <div
+            key={item.id}
+            className="main-card shrink-0 flex items-center justify-center w-[70vw] lg:w-[50vw] overflow-visible h-[60vh]"
           >
-            {/* Card Border Path */}
-            <path
-              d="M0 542 V36 A36 36 0 0 1 36 0 H540"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              vectorEffect="non-scaling-stroke"
-            />
+            {/* Important: overflow-visible here allows the text to pop out the top */}
+            <div className="relative h-full w-full max-w-[450px] md:max-w-none  md:w-[550px]">
 
-            {/* Adjusted Text Path: Moves the horizontal line to y=0 */}
-            <path
-              id={`text-path-${item.id}`}
-              d="M3 540 V52 A52 52 0 0 1 55 0 H540" 
-              fill="none"
-            />
+              {/* floating text  */}
+              <div className="absolute inset-0 top-3 text-xl z-20">
 
-            <text
-              className="fill-secondary text-xl font-semibold"
-              letterSpacing="2"
-              /* This 'middle' value ensures the 50/50 vertical split on the path */
-              dominantBaseline="middle"
-              stroke="rgba(0, 0, 0, 0.8)"
-              strokeWidth="2"
-              strokeLinejoin="round"
-              paintOrder="stroke fill"
-            >
-              <textPath href={`#text-path-${item.id}`} startOffset="270">
-                {item.name}
-              </textPath>
-            </text>
-          </svg>
+                {/* Active text (right side) */}
+                <div
+                  className={`${item.id - 1 === activeIndex ? "opacity-100" : "opacity-0"} duration-600 transition-opacity delay-300 absolute right-2 [writing-mode:vertical-rl] ${item.textColor === "white" ? "text-white" : "text-black"
+                    }`}
+                >
+                  <p>{item.sideText}</p>
+                </div>
+
+                {/* Inactive text (left side) */}
+                <div className={`absolute -left-7 [writing-mode:vertical-lr] text-black ${item.id - 1 !== activeIndex ? "opacity-100" : "opacity-0"} duration-400 transition-opacity delay-100`}>
+                  <p>{item.sideText}</p>
+                </div>
+
+              </div>
+
+              <div className="absolute inset-0">
+                <Image
+                  src={item.bgUrl}
+                  alt={item.name}
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 1024px) 550px, 100vw"
+                />
+              </div>
+
+              <svg
+                className={`absolute inset-0 w-full z-50 h-full pointer-events-none overflow-visible ${item.id - 1 === activeIndex ? "opacity-100" : "opacity-0"} duration-600 transition-opacity delay-300`}
+                viewBox="0 0 540 540"
+                preserveAspectRatio="xMinYMin slice"
+              >
+                {/* Card Border Path */}
+                <path
+                  d="M0 542 V36 A36 36 0 0 1 36 0 H540"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  vectorEffect="non-scaling-stroke"
+                />
+
+                {/* Adjusted Text Path: Moves the horizontal line to y=0 */}
+                <path
+                  id={`text-path-${item.id}`}
+                  d="M3 540 V52 A52 52 0 0 1 55 0 H540"
+                  fill="none"
+                />
+
+                <text
+                  className="fill-secondary text-xl font-semibold"
+                  letterSpacing="2"
+                  /* This 'middle' value ensures the 50/50 vertical split on the path */
+                  dominantBaseline="middle"
+                  stroke="rgba(0, 0, 0, 0.8)"
+                  strokeWidth="2"
+                  strokeLinejoin="round"
+                  paintOrder="stroke fill"
+                >
+                  <textPath href={`#text-path-${item.id}`} startOffset="270">
+                    {item.name}
+                  </textPath>
+                </text>
+              </svg>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* HAND TRACK */}
+      <div ref={handSection} className="opacity-0 -translate-x-[120px]">
+        <div
+          ref={handViewport}
+          className="relative -mt-10 md:-mt-14 w-full pointer-events-none"
+        >
+          <div ref={handTrack} className="flex">
+            {data.map((item) => {
+              return (
+                <div
+                  key={item.id}
+                  className="hand-card shrink-0 w-1/3 h-[145px] flex items-end justify-center"
+                >
+                  <div className="relative">
+                    <div className="hand-inner relative md:h-[152px] md:w-38 sm:h-32.5 sm:w-[130px] h-25 w-[100px]">
+                      <Image
+                        src={item.handUrl}
+                        alt={item.name}
+                        fill
+                        className="object-contain p-2"
+                        sizes="100vw"
+                      />
+                    </div>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
         </div>
       </div>
-    ))}
-  </div>
 
-  {/* HAND TRACK */}
-  <div ref={handSection} className="opacity-0 -translate-x-[120px]">
-    <div
-      ref={handViewport}
-      className="relative -mt-10 md:-mt-14 w-full pointer-events-none"
-    >
-      <div ref={handTrack} className="flex">
-        {data.map((item) => {
+      {/* DOTS */}
+      <div
+        ref={dotsRef}
+        className="flex relative z-50 justify-center gap-3 mt-4 opacity-0 translate-y-2"
+      >
+        {data.map((_, i) => {
+          const active = i === activeIndex
+
           return (
-            <div
-              key={item.id}
-              className="hand-card shrink-0 w-1/3 h-[145px] flex items-end justify-center"
-            >
-              <div className="relative">
-                <div className="hand-inner relative md:h-[152px] md:w-38 sm:h-32.5 sm:w-[130px] h-25 w-[100px]">
-                  <Image
-                    src={item.handUrl}
-                    alt={item.name}
-                    fill
-                    className="object-contain p-2"
-                    sizes="100vw"
-                  />
-                </div>
-              </div>
-            </div>
+            <button
+              key={i}
+              onClick={() => goTo(i)}
+              className={`h-2 sm:h-3 rounded-full transition-all cursor-pointer duration-300 ${active
+                  ? "sm:w-10 w-7 bg-black"
+                  : "sm:w-5 w-3 bg-secondary border border-background"
+                }`}
+            />
           )
         })}
       </div>
     </div>
-  </div>
-
-  {/* DOTS */}
-  <div
-    ref={dotsRef}
-    className="flex relative z-50 justify-center gap-3 mt-4 opacity-0 translate-y-2"
-  >
-    {data.map((_, i) => {
-      const active = i === activeIndex
-
-      return (
-        <button
-          key={i}
-          onClick={() => goTo(i)}
-          className={`h-2 sm:h-3 rounded-full transition-all cursor-pointer duration-300 ${
-            active
-              ? "sm:w-10 w-7 bg-black"
-              : "sm:w-5 w-3 bg-secondary border border-background"
-          }`}
-        />
-      )
-    })}
-  </div>
-</div>
   )
 }
 
