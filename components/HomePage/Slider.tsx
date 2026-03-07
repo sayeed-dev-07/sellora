@@ -7,6 +7,7 @@ import { Draggable } from "gsap/all"
 import InertiaPlugin from "gsap/InertiaPlugin"
 import Image from "next/image"
 import { data } from "@/public/data/SliderData"
+import Link from "next/link"
 gsap.registerPlugin(Draggable, InertiaPlugin)
 
 const AUTOPLAY_DELAY = 4000
@@ -82,6 +83,7 @@ const Slider = ({ homeDone }: { homeDone: boolean }) => {
 
       if (animate) {
         gsap.to(handTrack.current, {
+          delay:0.2,
           x: handX,
           duration: 1,
           ease: "power3.out"
@@ -242,34 +244,34 @@ const Slider = ({ homeDone }: { homeDone: boolean }) => {
     if (!track.current || !handSection.current || !dotsRef.current) return
 
     if (!homeDone) {
-      gsap.set(dotsRef.current, { autoAlpha: 0, y: 8 })
-      gsap.set(track.current, { autoAlpha: 0, y: 72 })
-      gsap.set(handSection.current, { autoAlpha: 0, x: -120 })
+      gsap.set(dotsRef.current, { autoAlpha: 0, y: 8, force3D: true })
+      gsap.set(track.current, { autoAlpha: 0, y: 72, force3D: true })
+      gsap.set(handSection.current, { autoAlpha: 0, x: -120, force3D: true })
       return
     }
 
     if (entrancePlayedRef.current) return
     entrancePlayedRef.current = true
 
-    const tl = gsap.timeline()
+    const tl = gsap.timeline({defaults: {ease: 'power3.in'}})
 
     tl.to(dotsRef.current, {
       autoAlpha: 1,
       y: 0,
       duration: 0.35,
-      ease: "power2.out"
+      
     })
       .to(track.current, {
         autoAlpha: 1,
         y: 0,
         duration: 0.8,
-        ease: "power3.out"
+        
       }, "+=0.05")
       .to(handSection.current, {
         autoAlpha: 1,
         x: 0,
         duration: 0.75,
-        ease: "power3.out"
+        
       }, "-=0.2")
   }, { scope: container, dependencies: [homeDone] })
 
@@ -284,7 +286,7 @@ const Slider = ({ homeDone }: { homeDone: boolean }) => {
       {/* FIX: Added arbitrary classes to hide the scrollbar if this track is natively scrollable */}
       <div
         ref={track}
-        className="flex gap-8 xl:gap-0 opacity-0  translate-y-[72px] "
+        className="flex gap-12 xl:gap-0 opacity-0  translate-y-[72px] "
       >
         {data.map((item) => (
           <div
@@ -292,10 +294,10 @@ const Slider = ({ homeDone }: { homeDone: boolean }) => {
             className="main-card shrink-0 flex items-center justify-center w-[70vw] lg:w-[50vw] overflow-visible h-[60vh]"
           >
             {/* Important: overflow-visible here allows the text to pop out the top */}
-            <div className="relative h-full w-full max-w-[450px] md:max-w-none  md:w-[550px]">
+            <Link href={`/case_study/${item.id}`} className="relative h-full w-full max-w-112.5 md:max-w-none group md:w-137.5">
 
               {/* floating text  */}
-              <div className="absolute inset-0 top-3 text-xl z-20">
+              <div className="absolute inset-0 top-3 text-sm sm:text-xl z-20">
 
                 {/* Active text (right side) */}
                 <div
@@ -312,12 +314,12 @@ const Slider = ({ homeDone }: { homeDone: boolean }) => {
 
               </div>
 
-              <div className="absolute inset-0">
+              <div className="absolute inset-0 overflow-hidden">
                 <Image
                   src={item.bgUrl}
                   alt={item.name}
                   fill
-                  className="object-cover"
+                  className="object-cover group-hover:scale-108 duration-300 transition-all ease-out"
                   sizes="(min-width: 1024px) 550px, 100vw"
                 />
               </div>
@@ -358,7 +360,7 @@ const Slider = ({ homeDone }: { homeDone: boolean }) => {
                   </textPath>
                 </text>
               </svg>
-            </div>
+            </Link>
           </div>
         ))}
       </div>

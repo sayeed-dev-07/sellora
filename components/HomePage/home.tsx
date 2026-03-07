@@ -22,7 +22,7 @@ const Home = () => {
         })
     }, {scope: containerRef})
     return (
-        <div ref={containerRef} className='h-screen w-full relative flex items-center justify-center overflow-hidden'>
+        <div ref={containerRef} className='h-[90vh] w-full relative flex items-center justify-center overflow-hidden'>
             {/* bg text  */}
             <div ref={textRef} className='absolute scale-200 opacity-0 top-[40%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-full'>
                 <BgTextAnimation/>
