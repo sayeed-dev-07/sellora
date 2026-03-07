@@ -319,7 +319,7 @@ const Slider = ({ homeDone }: { homeDone: boolean }) => {
                   src={item.bgUrl}
                   alt={item.name}
                   fill
-                  className="object-cover group-hover:scale-108 duration-300 transition-all ease-out"
+                  className="object-cover group-hover:scale-105 duration-300 transition-all ease-out"
                   sizes="(min-width: 1024px) 550px, 100vw"
                 />
               </div>
