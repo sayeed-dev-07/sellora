@@ -294,7 +294,7 @@ const Slider = ({ homeDone }: { homeDone: boolean }) => {
             className="main-card shrink-0 flex items-center justify-center w-[70vw] lg:w-[50vw] overflow-visible h-[60vh]"
           >
             {/* Important: overflow-visible here allows the text to pop out the top */}
-            <Link href={`/case_study/${item.id}`} className="relative h-full w-full max-w-112.5 md:max-w-none group md:w-137.5">
+            <Link href={`/case_study/${item.slug}`} className="relative h-full w-full max-w-112.5 md:max-w-none group md:w-137.5">
 
               {/* floating text  */}
               <div className="absolute inset-0 top-3 text-sm sm:text-xl z-20">

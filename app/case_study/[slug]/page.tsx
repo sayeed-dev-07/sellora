@@ -1,9 +1,18 @@
 
-import React from 'react';
+import { productData } from '@/public/data/productData';
+import ProductImageSlider from '@/components/CaseStudy/ProductImageSlider';
+import Image from 'next/image';
 
 const page = async ({ params }: { params: Promise<{ slug: string }> }) => {
 
     const { slug } = await params;
+    const data = productData.find(item => item.slug === slug)
+
+    if (!data) {
+        return <div className='h-[90vh] flex items-center justify-center'>
+            no data found
+        </div>
+    }
     return (
         <div className='mt-12 '>
 
@@ -64,7 +73,7 @@ const page = async ({ params }: { params: Promise<{ slug: string }> }) => {
                             height={54}
                             viewBox="0 0 405 54"
                             fill="none"
-                            className='md:h-[50px] w-fit relative z-60 h-[30px] sm:h-[36px]'
+                            className='md:h-[50px] w-fit relative z-60 h-[24px] sm:h-[36px]'
                         >
                             <g clipPath="url(#clip0_432_329)">
                                 <path
@@ -145,14 +154,54 @@ const page = async ({ params }: { params: Promise<{ slug: string }> }) => {
 
                 {/* main card div  */}
 
-                <div className='max-w-7xl border mx-auto mt-24 min-h-[60vh] rounded-xl w-full overflow-hidden flex '>
+                <div className='max-w-7xl mx-auto mt-24   w-full flex items-start'>
                     {/* left side div  */}
-                    <div className='flex-2 shrink-0 bg-amber-400'>
+                    <div className='flex-2 rounded-b-xl rounded-l-xl  overflow-hidden bg-foreground border h-auto'>
+                        <div className='relative w-full aspect-6/4'>
+                            <Image src={data?.bgUrl} alt={data?.name} fill sizes='100vw' />
+                        </div>
+
+                        {/* text section  */}
+
+                        <div className='px-[5%]'>
+
+                            <div className='flex items-start justify-between my-6 gap-x-12'>
+                                {/* title section  */}
+                                <p className='text-3xl font-semibold font-noto'>{data.title}</p>
+                                <div className='border py-1 px-1.5 bg-secondary rounded-sm w-fit'>{data.tag}</div>
+                            </div>
+
+                            <div className='flex flex-col gap-y-6 text-xl mb-12'>
+                                <p>{data.description[0]}</p>
+                                <p>{data.description[1]}</p>
+                            </div>
+
+
+                                {/* contact box  */}
+
+                            <div className='bg-[#eeeeee] text-background p-6 mb-12 flex flex-col gap-y-4 rounded-lg'>
+                                <p className='text-xl font-semibold'>{data.name}</p>
+                                <p>{data.linkText}</p>
+                                <a className='w-fit font-semibold text-[#757575]' href={data.link} target="_blank" rel="noopener noreferrer">
+                                    @{data.link}
+                                </a>
+                            </div>
+
+                        </div>
                     </div>
 
                     {/* right side div  */}
-                    <div className='flex-1 shrink-0  bg-foreground'>
-                        
+                    <div className='flex-1 rounded-r-xl border-r border-t border-b h-auto bg-foreground'>
+
+                         {/* img slider  */}
+                        <div className='p-8'>
+                            <ProductImageSlider images={data.productImg} alt={data.name} autoPlayInterval={5000}/>
+                        </div>
+
+
+                        <div>
+
+                        </div>
                     </div>
                 </div>
 
