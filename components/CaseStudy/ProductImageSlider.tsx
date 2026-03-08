@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { PointerEvent as ReactPointerEvent } from 'react'
 import { FaChevronLeft } from 'react-icons/fa'
 
@@ -24,25 +24,39 @@ const ProductImageSlider = ({ images, alt, autoPlayInterval = 3000 }: ProductIma
   const [activeIndex, setActiveIndex] = useState(1)
   const [animate, setAnimate] = useState(true)
   const [dragOffset, setDragOffset] = useState(0)
-  const [isPaused, setIsPaused] = useState(false) // NEW: Pause state for autoplay
+  const [isPaused, setIsPaused] = useState(false)
+  const [isTransitioning, setIsTransitioning] = useState(false)
 
   const startXRef = useRef<number | null>(null)
   const draggingRef = useRef(false)
+  const transitionLockRef = useRef(false)
 
-  const goNext = () => {
-    if (!hasCarousel) return
+  const goNext = useCallback(() => {
+    if (!hasCarousel || transitionLockRef.current) return
+    transitionLockRef.current = true
     setAnimate(true)
-    setActiveIndex((prev) => prev + 1)
-  }
+    setIsTransitioning(true)
+    setActiveIndex((prev) => {
+      if (prev >= total + 1) return 1
+      return prev + 1
+    })
+  }, [hasCarousel, total])
 
-  const goPrev = () => {
-    if (!hasCarousel) return
+  const goPrev = useCallback(() => {
+    if (!hasCarousel || transitionLockRef.current) return
+    transitionLockRef.current = true
     setAnimate(true)
-    setActiveIndex((prev) => prev - 1)
-  }
+    setIsTransitioning(true)
+    setActiveIndex((prev) => {
+      if (prev <= 0) return total
+      return prev - 1
+    })
+  }, [hasCarousel, total])
 
   const onTransitionEnd = () => {
     if (!hasCarousel) return
+    transitionLockRef.current = false
+    setIsTransitioning(false)
     if (activeIndex === 0) {
       setAnimate(false)
       setActiveIndex(total)
@@ -52,7 +66,6 @@ const ProductImageSlider = ({ images, alt, autoPlayInterval = 3000 }: ProductIma
     }
   }
 
-  // --- NEW: Autoplay Logic ---
   useEffect(() => {
     if (!hasCarousel || isPaused) return
 
@@ -61,8 +74,7 @@ const ProductImageSlider = ({ images, alt, autoPlayInterval = 3000 }: ProductIma
     }, autoPlayInterval)
 
     return () => clearInterval(timer)
-  }, [hasCarousel, isPaused, activeIndex, autoPlayInterval])
-  // ---------------------------
+  }, [hasCarousel, isPaused, autoPlayInterval, goNext])
 
   useEffect(() => {
     if (!hasCarousel) return
@@ -89,11 +101,12 @@ const ProductImageSlider = ({ images, alt, autoPlayInterval = 3000 }: ProductIma
   }
 
   const handlePointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (transitionLockRef.current) return
     draggingRef.current = true
     startXRef.current = event.clientX
     event.currentTarget.setPointerCapture(event.pointerId)
     setAnimate(false)
-    setIsPaused(true) // Pause when user starts dragging
+    setIsPaused(true)
   }
 
   const handlePointerMove = (event: ReactPointerEvent<HTMLDivElement>) => {
@@ -106,7 +119,7 @@ const ProductImageSlider = ({ images, alt, autoPlayInterval = 3000 }: ProductIma
     startXRef.current = null
     setAnimate(true)
     setDragOffset(0)
-    setIsPaused(false) // Resume after dragging
+    setIsPaused(false)
 
     if (Math.abs(deltaX) < SWIPE_THRESHOLD) return
     if (deltaX < 0) goNext()
@@ -164,7 +177,8 @@ const ProductImageSlider = ({ images, alt, autoPlayInterval = 3000 }: ProductIma
         type="button"
         aria-label="Previous image"
         onClick={goPrev}
-        className="absolute top-1/2 -left-4 -translate-y-1/2 z-10 h-12 w-12 rounded-full border backdrop-blur-sm flex items-center justify-center cursor-pointer bg-background shadow-md"
+        disabled={isTransitioning}
+        className="absolute top-1/2 -left-4 -translate-y-1/2 z-10 h-12 w-12 rounded-full border backdrop-blur-sm flex items-center justify-center cursor-pointer bg-background shadow-md disabled:cursor-not-allowed disabled:opacity-60"
       >
         <FaChevronLeft className='text-foreground' />
       </button>
@@ -173,7 +187,8 @@ const ProductImageSlider = ({ images, alt, autoPlayInterval = 3000 }: ProductIma
         type="button"
         aria-label="Next image"
         onClick={goNext}
-        className="absolute top-1/2 -right-4 -translate-y-1/2 z-10 h-12 w-12 rounded-full border backdrop-blur-sm flex bg-background items-center justify-center cursor-pointer shadow-md"
+        disabled={isTransitioning}
+        className="absolute top-1/2 -right-4 -translate-y-1/2 z-10 h-12 w-12 rounded-full border backdrop-blur-sm flex bg-background items-center justify-center cursor-pointer shadow-md disabled:cursor-not-allowed disabled:opacity-60"
       >
         <FaChevronLeft className="rotate-180 text-foreground" />
       </button>

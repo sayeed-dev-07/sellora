@@ -1,6 +1,6 @@
 ﻿'use client'
 
-import { useRef, useState } from "react"
+import { useRef, useState, type MouseEvent } from "react"
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
 import { Draggable } from "gsap/all"
@@ -8,11 +8,19 @@ import InertiaPlugin from "gsap/InertiaPlugin"
 import Image from "next/image"
 import { data } from "@/public/data/SliderData"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 gsap.registerPlugin(Draggable, InertiaPlugin)
 
 const AUTOPLAY_DELAY = 4000
 
-const Slider = ({ homeDone }: { homeDone: boolean }) => {
+const Slider = ({
+  homeDone,
+  skipEntranceAnimation = false,
+}: {
+  homeDone: boolean
+  skipEntranceAnimation?: boolean
+}) => {
+  const router = useRouter()
   const container = useRef<HTMLDivElement | null>(null)
   const track = useRef<HTMLDivElement | null>(null)
   const handSection = useRef<HTMLDivElement | null>(null)
@@ -24,6 +32,8 @@ const Slider = ({ homeDone }: { homeDone: boolean }) => {
   const centerCardRef = useRef<(index: number, animate?: boolean) => void>(() => { })
   const resetAutoplayRef = useRef<() => void>(() => { })
   const entrancePlayedRef = useRef(false)
+  const isNavigatingRef = useRef(false)
+  const trackTweenRef = useRef<gsap.core.Tween | null>(null)
 
 
 
@@ -141,13 +151,16 @@ const Slider = ({ homeDone }: { homeDone: boolean }) => {
       const x = viewportCenter - (index * spacing + cardWidth / 2)
 
       if (!animate) {
+        trackTweenRef.current?.kill()
+        trackTweenRef.current = null
         gsap.set(trackEl, { x })
         syncHandTrack(x, false)
         updateHandTransforms(x)
         return
       }
 
-      gsap.to(trackEl, {
+      trackTweenRef.current?.kill()
+      trackTweenRef.current = gsap.to(trackEl, {
         x,
         duration: 1,
         ease: "power3.out",
@@ -157,6 +170,7 @@ const Slider = ({ homeDone }: { homeDone: boolean }) => {
           updateHandTransforms(currentX)
         },
         onComplete: () => {
+          trackTweenRef.current = null
           syncHandTrack(x, false)
           updateHandTransforms(x)
         }
@@ -234,6 +248,7 @@ const Slider = ({ homeDone }: { homeDone: boolean }) => {
     window.addEventListener("resize", handleResize)
 
     return () => {
+      trackTweenRef.current?.kill()
       window.removeEventListener("resize", handleResize)
       draggableRef.current?.kill()
       clearInterval(autoplayRef.current ?? undefined)
@@ -242,6 +257,14 @@ const Slider = ({ homeDone }: { homeDone: boolean }) => {
 
   useGSAP(() => {
     if (!track.current || !handSection.current || !dotsRef.current) return
+
+    if (skipEntranceAnimation) {
+      gsap.set(dotsRef.current, { autoAlpha: 1, y: 0 })
+      gsap.set(track.current, { autoAlpha: 1, y: 0 })
+      gsap.set(handSection.current, { autoAlpha: 1, x: 0 })
+      entrancePlayedRef.current = true
+      return
+    }
 
     if (!homeDone) {
       gsap.set(dotsRef.current, { autoAlpha: 0, y: 8, force3D: true })
@@ -273,11 +296,38 @@ const Slider = ({ homeDone }: { homeDone: boolean }) => {
         duration: 0.75,
         
       }, "-=0.2")
-  }, { scope: container, dependencies: [homeDone] })
+  }, { scope: container, dependencies: [homeDone, skipEntranceAnimation] })
 
   const goTo = (index: number) => {
     centerCardRef.current(index)
     resetAutoplayRef.current()
+  }
+
+  const handleCardClick = (event: MouseEvent<HTMLAnchorElement>, slug: string) => {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+
+    event.preventDefault()
+    if (isNavigatingRef.current) return
+    isNavigatingRef.current = true
+
+    const trackEl = track.current
+    if (trackEl) {
+      trackTweenRef.current?.kill()
+      trackTweenRef.current = null
+
+      const dragInstance = draggableRef.current as (Draggable & { tween?: gsap.core.Tween }) | null
+      dragInstance?.tween?.kill()
+
+      gsap.killTweensOf(trackEl)
+      const currentX = Number(gsap.getProperty(trackEl, "x")) || 0
+      gsap.set(trackEl, { x: currentX })
+    }
+
+    const cardEl = event.currentTarget
+    
+    gsap.killTweensOf(cardEl)
+
+    router.push(`/case_study/${slug}`)
   }
 
   return (
@@ -294,7 +344,11 @@ const Slider = ({ homeDone }: { homeDone: boolean }) => {
             className="main-card shrink-0 flex items-center justify-center w-[70vw] lg:w-[50vw] overflow-visible h-[60vh]"
           >
             {/* Important: overflow-visible here allows the text to pop out the top */}
-            <Link href={`/case_study/${item.slug}`} className="relative h-full w-full max-w-112.5 md:max-w-none group md:w-137.5">
+            <Link
+              href={`/case_study/${item.slug}`}
+              onClick={(event) => handleCardClick(event, item.slug)}
+              className="relative h-full w-full max-w-112.5 md:max-w-none group md:w-137.5"
+            >
 
               {/* floating text  */}
               <div className="absolute inset-0 top-3 text-sm sm:text-xl z-20">

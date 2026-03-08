@@ -2,6 +2,8 @@
 import { productData } from '@/public/data/productData';
 import ProductImageSlider from '@/components/CaseStudy/ProductImageSlider';
 import Image from 'next/image';
+import Line from '@/components/CaseStudy/line';
+import { MdShoppingCart } from 'react-icons/md';
 
 const page = async ({ params }: { params: Promise<{ slug: string }> }) => {
 
@@ -154,9 +156,10 @@ const page = async ({ params }: { params: Promise<{ slug: string }> }) => {
 
                 {/* main card div  */}
 
-                <div className='max-w-7xl mx-auto mt-24   w-full flex items-start'>
+                <div className='max-w-7xl px-1 sm:px-2 md:px-6 mx-auto mt-24 flex-col lg:flex-row w-full flex items-start pb-24'>
                     {/* left side div  */}
-                    <div className='flex-2 rounded-b-xl rounded-l-xl  overflow-hidden bg-foreground border h-auto'>
+                    <div className='flex-2   overflow-hidden bg-foreground lg:border lg:rounded-br-xl
+                     lg:rounded-l-xl border-t border-l border-r rounded-t-xl lg:rounded-t-none h-auto'>
                         <div className='relative w-full aspect-6/4'>
                             <Image src={data?.bgUrl} alt={data?.name} fill sizes='100vw' />
                         </div>
@@ -167,19 +170,19 @@ const page = async ({ params }: { params: Promise<{ slug: string }> }) => {
 
                             <div className='flex items-start justify-between my-6 gap-x-12'>
                                 {/* title section  */}
-                                <p className='text-3xl font-semibold font-noto'>{data.title}</p>
-                                <div className='border py-1 px-1.5 bg-secondary rounded-sm w-fit'>{data.tag}</div>
+                                <p className='text-2xl sm:text-3xl font-semibold font-noto'>{data.title}</p>
+                                <div className='border py-1 px-1.5 bg-secondary rounded-sm text-sm sm:text-lg w-fit'>{data.tag}</div>
                             </div>
 
-                            <div className='flex flex-col gap-y-6 text-xl mb-12'>
+                            <div className='flex flex-col sm:gap-y-6 gap-y-3 text-lg sm:text-xl mb-12'>
                                 <p>{data.description[0]}</p>
                                 <p>{data.description[1]}</p>
                             </div>
 
 
-                                {/* contact box  */}
+                            {/* contact box  */}
 
-                            <div className='bg-[#eeeeee] text-background p-6 mb-12 flex flex-col gap-y-4 rounded-lg'>
+                            <div className='bg-[#eeeeee] text-background p-4 sm:p-6 mb-12 flex flex-col gap-y-2.5 sm:gap-y-4 rounded-lg'>
                                 <p className='text-xl font-semibold'>{data.name}</p>
                                 <p>{data.linkText}</p>
                                 <a className='w-fit font-semibold text-[#757575]' href={data.link} target="_blank" rel="noopener noreferrer">
@@ -191,16 +194,50 @@ const page = async ({ params }: { params: Promise<{ slug: string }> }) => {
                     </div>
 
                     {/* right side div  */}
-                    <div className='flex-1 rounded-r-xl border-r border-t border-b h-auto bg-foreground'>
+                    <div className='lg:border-t lg:border-r lg:border-b lg:rounded-r-xl border-r border-b border-l lg:border-l-0 rounded-br-xl flex-1  h-auto bg-foreground rounded-bl-xl lg:rounded-bl-none  w-full'>
 
-                         {/* img slider  */}
+                        {/* img slider  */}
                         <div className='p-8'>
-                            <ProductImageSlider images={data.productImg} alt={data.name} autoPlayInterval={5000}/>
+                            <ProductImageSlider images={data.productImg} alt={data.name} autoPlayInterval={5000} />
                         </div>
 
 
+                        {/* product details section  */}
                         <div>
+                            <div className='grid grid-cols-[120px_1fr] sm:grid-cols-[170px_1fr] items-start gap-x-4 px-8 mt-6 mb-4'>
+                                <span className='font-semibold text-lg'>Product</span>
+                                <div className='text-left'>
+                                    {data.type.map((item, i) => (
+                                        <p key={i}>{item}</p>
+                                    ))}
+                                </div>
+                            </div>
+                            <Line />
+                            <div className='grid grid-cols-[120px_1fr] sm:grid-cols-[170px_1fr] items-start gap-x-4 px-8 mt-6 mb-4'>
+                                <span className='font-semibold text-lg'>Color</span>
+                                <div className='text-left'>
+                                    {data.color.map((item, i) => (
+                                        <p key={i}>{item}</p>
+                                    ))}
+                                </div>
+                            </div>
+                            <Line />
+                            <div className='grid grid-cols-[120px_1fr] sm:grid-cols-[170px_1fr] items-start gap-x-4 px-8 mt-6 mb-4'>
+                                <span className='font-semibold text-lg'>Size</span>
+                                <span className='text-left'>{data.size}</span>
+                            </div>
+                            <Line />
+                            <div className='grid grid-cols-[120px_1fr] sm:grid-cols-[170px_1fr] items-start gap-x-4 px-8 mt-6 mb-4'>
+                                <span className='font-semibold text-lg'>Printing Method</span>
+                                <span className='text-left '>{data.print}</span>
+                            </div>
 
+                            
+                        </div>
+                        <div className='flex items-center justify-center mt-8 mb-4'>
+                            <div className='px-5 py-4 rounded-lg bg-secondary  border  mt-6 mb-4  sm:text-base text-2xl uppercase text-background flex items-center gap-x-2 font-semibold cursor-pointer  w-fit'>
+                            <MdShoppingCart size={30}/> get the item
+                        </div>
                         </div>
                     </div>
                 </div>

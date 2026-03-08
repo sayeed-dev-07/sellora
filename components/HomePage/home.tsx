@@ -7,18 +7,34 @@ import { useGSAP } from '@gsap/react';
 
 gsap.registerPlugin(useGSAP)
 
+let hasHomeIntroPlayed = false
+
 const Home = () => {
-    const [isHomeDone, setIsHomeDone] = useState(false)
+    const [shouldAnimateIntro] = useState(() => !hasHomeIntroPlayed)
+    const [isHomeDone, setIsHomeDone] = useState(hasHomeIntroPlayed)
     const containerRef = useRef<HTMLDivElement | null>(null)
     const textRef = useRef<HTMLDivElement | null>(null)
     
     useGSAP(()=>{
+        if (!textRef.current) return
+
+        if (!shouldAnimateIntro) {
+            gsap.set(textRef.current, {
+                opacity: 1,
+                scale: 1,
+            })
+            return
+        }
+
         gsap.to(textRef.current, {
             opacity: 1,
             scale: 1,
             duration:0.6,
             ease:'power3.out',
-            onComplete:()=> setIsHomeDone(true)
+            onComplete:()=> {
+                hasHomeIntroPlayed = true
+                setIsHomeDone(true)
+            }
         })
     }, {scope: containerRef})
     return (
@@ -27,7 +43,7 @@ const Home = () => {
             <div ref={textRef} className='absolute scale-200 opacity-0 top-[40%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-full'>
                 <BgTextAnimation/>
             </div>
-            <Slider homeDone={isHomeDone}/>
+            <Slider homeDone={isHomeDone} skipEntranceAnimation={!shouldAnimateIntro} />
         </div>
     );
 };
