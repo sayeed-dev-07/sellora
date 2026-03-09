@@ -235,7 +235,7 @@ const page = async ({ params }: { params: Promise<{ slug: string }> }) => {
                             
                         </div>
                         <div className='flex items-center justify-center mt-8 mb-4'>
-                            <div className='px-5 py-4 rounded-lg bg-secondary  border  mt-6 mb-4  sm:text-base text-2xl uppercase text-background flex items-center gap-x-2 font-semibold cursor-pointer  w-fit'>
+                            <div className='px-5 py-4 rounded-lg bg-secondary  border  mt-6 mb-4  sm:text-base text-xl uppercase text-background flex items-center gap-x-2 font-semibold cursor-pointer  w-fit'>
                             <MdShoppingCart size={30}/> get the item
                         </div>
                         </div>

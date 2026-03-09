@@ -93,7 +93,7 @@ const Slider = ({
 
       if (animate) {
         gsap.to(handTrack.current, {
-          delay:0.2,
+          delay:0.4,
           x: handX,
           duration: 1,
           ease: "power3.out"
@@ -110,7 +110,7 @@ const Slider = ({
         const dist = i - floatIndex
         const absDist = Math.abs(dist)
         const proximity = clamp01(1 - absDist)
-        const sideFade = clamp01(1 - absDist * 0.55)
+        
 
         const rotate = dist * 14
         const scale = 0.72 + proximity * 1.5
@@ -121,7 +121,6 @@ const Slider = ({
 
         gsap.set(card, {
           y,
-          opacity: Math.max(0.25, sideFade),
           zIndex: 100 - Math.round(absDist * 10)
         })
 
@@ -462,7 +461,7 @@ const Slider = ({
             <button
               key={i}
               onClick={() => goTo(i)}
-              className={`h-2 sm:h-3 rounded-full transition-all cursor-pointer duration-300 ${active
+              className={` h-2 rounded-full transition-all cursor-pointer duration-300 ${active
                   ? "sm:w-10 w-7 bg-black"
                   : "sm:w-5 w-3 bg-secondary border border-background"
                 }`}
