@@ -12,6 +12,20 @@ import { useRouter } from "next/navigation"
 gsap.registerPlugin(Draggable, InertiaPlugin)
 
 const AUTOPLAY_DELAY = 4000
+const MOBILE_AUTOPLAY_DELAY = 2600
+const MOBILE_BREAKPOINT = 768
+
+const getMotionConfig = (viewportWidth: number) => {
+  const isSmallScreen = viewportWidth < MOBILE_BREAKPOINT
+
+  return {
+    isSmallScreen,
+    autoplayDelay: isSmallScreen ? MOBILE_AUTOPLAY_DELAY : AUTOPLAY_DELAY,
+    slideDuration: isSmallScreen ? 0.55 : 1,
+    entranceTrackDuration: isSmallScreen ? 0.55 : 0.8,
+    entranceHandDuration: isSmallScreen ? 0.45 : 0.75,
+  }
+}
 
 const Slider = ({
   homeDone,
@@ -60,6 +74,14 @@ const Slider = ({
     let handViewportCenter = 0
     let handMinX = 0
     let handMaxX = 0
+    let motion = getMotionConfig(window.innerWidth)
+    let resizeFrame = 0
+    const setHandTrackX = handTrack.current ? gsap.quickSetter(handTrack.current, "x", "px") : null
+    const setHandCardY = handCards.map((card) => gsap.quickSetter(card, "y", "px"))
+    const setHandOverlapOpacity = handOverlaps.map((overlap) => gsap.quickSetter(overlap, "opacity"))
+    const setHandOverlapY = handOverlaps.map((overlap) => gsap.quickSetter(overlap, "y", "px"))
+    const setHandOverlapScaleX = handOverlaps.map((overlap) => gsap.quickSetter(overlap, "scaleX"))
+    const setHandOverlapScaleY = handOverlaps.map((overlap) => gsap.quickSetter(overlap, "scaleY"))
 
     const clamp01 = (value: number) => Math.max(0, Math.min(1, value))
 
@@ -67,6 +89,48 @@ const Slider = ({
       const range = maxX - minX
       const progress = range === 0 ? 0 : (mainX - minX) / range
       return (1 - progress) * (cards.length - 1)
+    }
+
+    function applyVisualState(mainX: number) {
+      if (!handTrack.current || !setHandTrackX) return
+
+      const range = maxX - minX
+      const progress = clamp01(range === 0 ? 0 : (mainX - minX) / range)
+      const handX = handMinX + progress * (handMaxX - handMinX)
+      const floatIndex = getFloatIndexFromMainX(mainX)
+      const rotationFactor = motion.isSmallScreen ? 10 : 14
+
+      setHandTrackX(handX)
+
+      handCards.forEach((card, i) => {
+        const dist = i - floatIndex
+        const absDist = Math.abs(dist)
+        const proximity = clamp01(1 - absDist)
+
+        const rotate = dist * rotationFactor
+        const scale = 0.72 + proximity * 1.5
+        const y = -2 - proximity * -30
+        const overlapOpacity = proximity
+        const overlapY = (1 - proximity) * 8
+        const overlapScale = 0.72 + proximity * 0.38
+
+        setHandCardY[i]?.(y)
+        card.style.zIndex = String(100 - Math.round(absDist * 10))
+
+        if (handInners[i]) {
+          gsap.set(handInners[i], {
+            rotate,
+            scale
+          })
+        }
+
+        if (handOverlaps[i]) {
+          setHandOverlapOpacity[i]?.(overlapOpacity)
+          setHandOverlapY[i]?.(overlapY)
+          setHandOverlapScaleX[i]?.(overlapScale)
+          setHandOverlapScaleY[i]?.(overlapScale)
+        }
+      })
     }
 
     function calculateLayout() {
@@ -85,64 +149,6 @@ const Slider = ({
       handMaxX = handViewportCenter - handWidth / 2
     }
 
-    function syncHandTrack(mainX: number, animate = false) {
-      if (!handTrack.current) return
-      const range = maxX - minX
-      const progress = clamp01(range === 0 ? 0 : (mainX - minX) / range)
-      const handX = handMinX + progress * (handMaxX - handMinX)
-
-      if (animate) {
-        gsap.to(handTrack.current, {
-          delay:0.4,
-          x: handX,
-          duration: 1,
-          ease: "power3.out"
-        })
-      } else {
-        gsap.set(handTrack.current, { x: handX })
-      }
-    }
-
-    function updateHandTransforms(mainX: number) {
-      const floatIndex = getFloatIndexFromMainX(mainX)
-
-      handCards.forEach((card, i) => {
-        const dist = i - floatIndex
-        const absDist = Math.abs(dist)
-        const proximity = clamp01(1 - absDist)
-        
-
-        const rotate = dist * 14
-        const scale = 0.72 + proximity * 1.5
-        const y = -2 - proximity * -30
-        const overlapOpacity = proximity
-        const overlapY = (1 - proximity) * 8
-        const overlapScale = 0.72 + proximity * 0.38
-
-        gsap.set(card, {
-          y,
-          zIndex: 100 - Math.round(absDist * 10)
-        })
-
-        if (handInners[i]) {
-          gsap.set(handInners[i], {
-            rotate,
-            scale,
-            transformOrigin: "50% 100%"
-          })
-        }
-
-        if (handOverlaps[i]) {
-          gsap.set(handOverlaps[i], {
-            opacity: overlapOpacity,
-            y: overlapY,
-            scaleX: overlapScale,
-            scaleY: overlapScale
-          })
-        }
-      })
-    }
-
     function centerCard(index: number, animate = true) {
       indexRef.current = index
       setActiveIndex(index)
@@ -153,25 +159,22 @@ const Slider = ({
         trackTweenRef.current?.kill()
         trackTweenRef.current = null
         gsap.set(trackEl, { x })
-        syncHandTrack(x, false)
-        updateHandTransforms(x)
+        applyVisualState(x)
         return
       }
 
       trackTweenRef.current?.kill()
       trackTweenRef.current = gsap.to(trackEl, {
         x,
-        duration: 1,
+        duration: motion.slideDuration,
         ease: "power3.out",
         onUpdate: () => {
           const currentX = Number(gsap.getProperty(trackEl, "x"))
-          syncHandTrack(currentX, false)
-          updateHandTransforms(currentX)
+          applyVisualState(currentX)
         },
         onComplete: () => {
           trackTweenRef.current = null
-          syncHandTrack(x, false)
-          updateHandTransforms(x)
+          applyVisualState(x)
         }
       })
     }
@@ -186,18 +189,19 @@ const Slider = ({
       clearInterval(autoplayRef.current ?? undefined)
       autoplayRef.current = setInterval(() => {
         nextCard()
-      }, AUTOPLAY_DELAY)
+      }, motion.autoplayDelay)
     }
 
     centerCardRef.current = centerCard
     resetAutoplayRef.current = resetAutoplay
 
     calculateLayout()
+    gsap.set([trackEl, handTrack.current, ...handCards, ...handInners], { force3D: true })
+    gsap.set(handInners, { transformOrigin: "50% 100%", backfaceVisibility: "hidden" })
 
     const startX = viewportCenter - (indexRef.current * spacing + cardWidth / 2)
     gsap.set(trackEl, { x: startX })
-    syncHandTrack(startX, false)
-    updateHandTransforms(startX)
+    applyVisualState(startX)
 
     if (draggableRef.current) draggableRef.current.kill()
 
@@ -212,12 +216,10 @@ const Slider = ({
         resetAutoplay()
       },
       onDrag() {
-        syncHandTrack(this.x, false)
-        updateHandTransforms(this.x)
+        applyVisualState(this.x)
       },
       onThrowUpdate() {
-        syncHandTrack(this.x, false)
-        updateHandTransforms(this.x)
+        applyVisualState(this.x)
       },
 
       snap: () => {
@@ -239,15 +241,23 @@ const Slider = ({
     resetAutoplay()
 
     function handleResize() {
-      calculateLayout()
-      centerCard(indexRef.current, false)
-      draggableRef.current?.applyBounds({ minX, maxX })
+      motion = getMotionConfig(window.innerWidth)
+      if (resizeFrame) window.cancelAnimationFrame(resizeFrame)
+
+      resizeFrame = window.requestAnimationFrame(() => {
+        resizeFrame = 0
+        calculateLayout()
+        centerCard(indexRef.current, false)
+        draggableRef.current?.applyBounds({ minX, maxX })
+        resetAutoplay()
+      })
     }
 
     window.addEventListener("resize", handleResize)
 
     return () => {
       trackTweenRef.current?.kill()
+      if (resizeFrame) window.cancelAnimationFrame(resizeFrame)
       window.removeEventListener("resize", handleResize)
       draggableRef.current?.kill()
       clearInterval(autoplayRef.current ?? undefined)
@@ -286,13 +296,13 @@ const Slider = ({
       .to(track.current, {
         autoAlpha: 1,
         y: 0,
-        duration: 0.8,
+        duration: getMotionConfig(window.innerWidth).entranceTrackDuration,
         
       }, "+=0.05")
       .to(handSection.current, {
         autoAlpha: 1,
         x: 0,
-        duration: 0.75,
+        duration: getMotionConfig(window.innerWidth).entranceHandDuration,
         
       }, "-=0.2")
   }, { scope: container, dependencies: [homeDone, skipEntranceAnimation] })
@@ -335,7 +345,7 @@ const Slider = ({
       {/* FIX: Added arbitrary classes to hide the scrollbar if this track is natively scrollable */}
       <div
         ref={track}
-        className="flex gap-12 xl:gap-0 opacity-0  translate-y-[72px] "
+        className="flex gap-12 xl:gap-0 opacity-0 translate-y-[72px] will-change-transform"
       >
         {data.map((item) => (
           <div
@@ -372,8 +382,8 @@ const Slider = ({
                   src={item.bgUrl}
                   alt={item.name}
                   fill
-                  className="object-cover group-hover:scale-105 duration-300 transition-all ease-out"
-                  sizes="(min-width: 1024px) 550px, 100vw"
+                  className="object-cover transition-transform duration-300 ease-out group-hover:scale-105"
+                  sizes="(min-width: 1024px) 550px, 70vw"
                 />
               </div>
 
@@ -424,7 +434,7 @@ const Slider = ({
           ref={handViewport}
           className="relative -mt-10 md:-mt-14 w-full pointer-events-none"
         >
-          <div ref={handTrack} className="flex">
+          <div ref={handTrack} className="flex will-change-transform">
             {data.map((item) => {
               return (
                 <div
@@ -432,13 +442,13 @@ const Slider = ({
                   className="hand-card shrink-0 w-1/3 h-[145px] flex items-end justify-center"
                 >
                   <div className="relative">
-                    <div className="hand-inner relative md:h-[152px] md:w-38 sm:h-32.5 sm:w-[130px] h-25 w-[100px]">
+                    <div className="hand-inner relative h-25 w-[100px] sm:h-32.5 sm:w-[130px] md:h-[152px] md:w-38 will-change-transform">
                       <Image
                         src={item.handUrl}
                         alt={item.name}
                         fill
                         className="object-contain p-2"
-                        sizes="100vw"
+                        sizes="(min-width: 768px) 130px, 100px"
                       />
                     </div>
                   </div>
