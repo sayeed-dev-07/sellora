@@ -340,7 +340,7 @@ const Slider = ({
   }
 
   return (
-    <div ref={container} className="w-full pb-6  relative z-10"> {/* FIX: added overflow-x-hidden just in case the track spills over the page width */}
+    <div ref={container} className="w-full pb-6 py-[5%] relative z-10"> {/* FIX: added overflow-x-hidden just in case the track spills over the page width */}
       {/* MAIN SLIDER */}
       {/* FIX: Added arbitrary classes to hide the scrollbar if this track is natively scrollable */}
       <div
@@ -350,7 +350,7 @@ const Slider = ({
         {data.map((item) => (
           <div
             key={item.id}
-            className="main-card shrink-0 flex items-center justify-center w-[70vw] lg:w-[50vw] overflow-visible h-[60vh]"
+            className="main-card shrink-0 flex items-center justify-center w-[70vw] lg:w-[50vw] overflow-visible h-[45vh] sm:h-[60vh]"
           >
             {/* Important: overflow-visible here allows the text to pop out the top */}
             <Link
