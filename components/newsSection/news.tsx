@@ -27,7 +27,7 @@ const News = () => {
     }, {scope: newsContainer})
 
     return (
-        <div ref={newsContainer} className='max-w-7xl min-h-screen px-1 sm:px-2 md:px-6 mx-auto my-24'>
+        <div ref={newsContainer} className='max-w-7xl  px-1 sm:px-2 md:px-6 mx-auto my-24'>
 
             {/* news notice  */}
             <div className='flex items-center justify-center lg:flex-row flex-col bg-[#eeeeee]'>

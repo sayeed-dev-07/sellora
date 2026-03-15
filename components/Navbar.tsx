@@ -11,8 +11,8 @@ const Navbar = () => {
             <div className='hidden lg:flex items-center justify-center font-medium gap-x-7 text-lg  font-noto'>
                 <a className='hover:text-background/50 duration-150 transition-colors ease-in' href="">Home</a>
                 <a className='hover:text-background/50 duration-150 transition-colors ease-in' href="">Features</a>
-                <a className='hover:text-background/50 duration-150 transition-colors ease-in' href="">Lineup</a>
-                <a className='hover:text-background/50 duration-150 transition-colors ease-in' href="">Printing Method</a>
+                <a className='hover:text-background/50 duration-150 transition-colors ease-in' href="">Products</a>
+                
                 <a className='hover:text-background/50 duration-150 transition-colors ease-in' href="">Order flow</a>
                 <a className='hover:text-background/50 duration-150 transition-colors ease-in' href="">Use cases</a>
                 <a className='hover:text-background/50 duration-150 transition-colors ease-in' href="">Contact us</a>

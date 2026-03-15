@@ -8,15 +8,7 @@ const BgTextAnimation = () => {
     const bgTextRef = useRef<HTMLDivElement | null>(null)
     return (
         <div className="relative inline-block w-full text-center" ref={bgTextRef}>
-            <p
-                aria-hidden="true"
-                className="pointer-events-none tracking-wide leading-tight mx-auto max-w-[90%] w-full absolute inset-0 select-none sm:text-[12vw] text-[14vw] md:text-[10vw] xl:text-[8vw] font-extrabold uppercase font-noto text-transparent [-webkit-text-stroke:3px_black]"
-            >
-                Quality You Can Trust
-            </p>
-            <p className="relative md:text-[10vw] xl:text-[8vw] sm:text-[12vw] max-w-[90%] mx-auto text-[14vw] w-full font-extrabold uppercase font-noto text-secondary tracking-wide leading-tight">
-                Quality You Can Trust
-            </p>
+            <p className='[-webkit-text-stroke:2px_black] [paint-order:stroke_fill] text-secondary sm:text-[12vw] text-[14vw] tracking-wide leading-tight mx-auto max-w-[90%] w-full md:text-[10vw] xl:text-[8vw] font-extrabold uppercase font-noto'>Quality You Can Trust</p>
         </div>
     );
 };

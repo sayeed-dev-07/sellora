@@ -1,6 +1,8 @@
 import Feature from "@/components/FeatureSection/Feature";
 import Home from "@/components/HomePage/home";
+import Marquee from "@/components/MarqueeLine";
 import News from "@/components/newsSection/news";
+import Products from "@/components/Products/Products";
 
 
 export default function page() {
@@ -9,6 +11,8 @@ export default function page() {
         <Home/>
         <News/>
         <Feature/>
+        <Marquee/>
+        <Products/>
     </div>
   );
 }

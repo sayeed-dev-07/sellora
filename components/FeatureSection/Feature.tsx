@@ -1,9 +1,10 @@
 import Image from 'next/image';
 import React from 'react';
+import FeatureCard from './FeatureCard';
 
 const Feature = () => {
     return (
-        <div className='relative'>
+        <div className='relative my-[5%]'>
 
             <div className='w-[50%] z-60 absolute left-[3%] top-[1%] sm:w-fit '>
                 <Image
@@ -58,7 +59,7 @@ const Feature = () => {
             </div>
             
             {/* Added relative positioning here to anchor the absolute mobile text */}
-            <div className='min-h-screen w-full bg-secondary border-t relative '>
+            <div className=' w-full bg-secondary border-t relative '>
 
                 {/* top part  */}
                 <div className='pt-[10%] md:pt-0 '>
@@ -82,11 +83,11 @@ const Feature = () => {
 
                 {/* bottom part  */}
                 {/* Added `pr-12 md:pr-4` so the boxes don't slide underneath the vertical text bar on mobile */}
-                <div className='flex items-center px-2 pr-12 md:pr-4 py-[5%] border-t md:border-t-0 flex-wrap gap-y-6 justify-center gap-x-12'>
-                    <div className="box h-[400px] w-[400px] bg-background border border-black/10"></div>
-                    <div className="box h-[400px] w-[400px] bg-background border border-black/10"></div>
-                    <div className="box h-[400px] w-[400px] bg-background border border-black/10"></div>
-                    <div className="box h-[400px] w-[400px] bg-background border border-black/10"></div>
+                <div className='grid grid-cols-[repeat(auto-fit,minmax(270px,1fr))] h-full sm:grid-cols-[repeat(auto-fit,minmax(380px,1fr))]  items-center px-2 pr-12 md:pr-4  border-t md:border-t-0   justify-center  w-full'>
+                    <FeatureCard id={1}/>
+                    <FeatureCard id={2}/>
+                    <FeatureCard id={3}/>
+                    <FeatureCard id={4}/>
                 </div>
                 
             </div>
