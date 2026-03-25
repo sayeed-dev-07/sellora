@@ -24,13 +24,13 @@ const ProductSection = ({ name }: ProductSectionProps) => {
 
     return (
         <div className='w-full relative'>
-            <div className='grid grid-cols-2 gap-y-10 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6'>
+            <div className='grid grid-cols-2 mt-4 gap-y-10 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6'>
                 {categoryProducts.map((item, index) => (
                     <button
                         type='button'
                         onClick={() => openModal(item)}
                         key={item.id}
-                        className='relative flex flex-col items-center gap-4 px-3 cursor-pointer'
+                        className='relative flex flex-col items-center gap-2 sm:gap-4 px-3 cursor-pointer'
                     >
                         {index > 0 && (
                             <span className='absolute left-0 top-10 hidden h-7 w-px bg-black/70 xl:block' />

@@ -1,7 +1,7 @@
 export const productDetails = [
     {
         id: 1,
-        name: `Collar Short-Sleeve Polo Shirt`,
+        name: `Collar Tee`,
         des: `Minor batch differences can occur during blank garment production due to variations in fabric, dye and processing. This is common in apparel manufacturing, and we work hard to keep every item consistent.`,
         feat: [
             'Classic collar design',
@@ -17,12 +17,20 @@ export const productDetails = [
         size: ['S', 'M', 'L', 'XL'],
         types: [
             {
-                name: 'Navy Blue',
-                imgLink: '/showCase/polloShirt.jpg'
+                name: 'Graphite Dune',
+                imgLink: '/products/tShirt/1.1.png'
             },
             {
-                name: 'Heather Grey',
-                imgLink: '/showCase/polloShirt.jpg'
+                name: 'Graphite Dune 2',
+                imgLink: '/products/tShirt/1.png'
+            },
+            {
+                name: 'Frost White',
+                imgLink: '/products/tShirt/1.3.png'
+            },
+            {
+                name: 'Jet Black',
+                imgLink: '/products/tShirt/1.4.png'
             }
         ],
         category: 'shirt',
@@ -30,7 +38,7 @@ export const productDetails = [
     },
     {
         id: 2,
-        name: `Minimalist Oversized Linen Shirt`,
+        name: `Button's Up Shirt`,
         des: `A premium, relaxed-fit button-down designed for a breathable and effortless aesthetic. Perfect for layering or wearing on its own during warmer days.`,
         feat: [
             'Relaxed, draped fit',
@@ -44,20 +52,29 @@ export const productDetails = [
         size: ['S', 'M', 'L'],
         types: [
             {
-                name: 'Oatmeal',
-                imgLink: '/showCase/linenShirt.jpg'
+                name: 'Chocolate Cream Utility Shirt',
+                imgLink: '/products/pocketShirt/2.1.png'
             },
             {
-                name: 'Off-White',
-                imgLink: '/showCase/linenShirt.jpg'
-            }
+                name: 'Mono Split Shirt',
+                imgLink: '/products/pocketShirt/2.2.png'
+            },
+            {
+                name: 'Vintage Aztec Shirt',
+                imgLink: '/products/pocketShirt/2.3.png'
+            },
+            {
+                name: 'Midnight Tribal Shirt',
+                imgLink: '/products/pocketShirt/2.4.png'
+            },
+            
         ],
         category: 'shirt',
         hot: true
     },
     {
         id: 3,
-        name: `Essential Heavyweight Boxy Tee`,
+        name: `CollarLess Tee`,
         des: `Constructed from dense, high-quality cotton, this tee holds its structured shape all day. Features a dropped shoulder and a wide, cropped fit.`,
         feat: [
             'Boxy, modern silhouette',
@@ -71,13 +88,26 @@ export const productDetails = [
         size: ['XS', 'S', 'M', 'L', 'XL'],
         types: [
             {
-                name: 'Vintage Black',
-                imgLink: '/showCase/boxShirt.jpg'
+                name: 'Shadow Raglan Tee',
+                imgLink: '/products/CollarLess/3.1.png'
             },
             {
-                name: 'Chocolate Brown',
-                imgLink: '/showCase/boxShirt.jpg'
-            }
+                name: 'Mocha Sport Tee',
+                imgLink: '/products/CollarLess/3.2.png'
+            },
+            {
+                name: 'Mono Sport Tee',
+                imgLink: '/products/CollarLess/3.3.png'
+            },
+            {
+                name: 'BlackStar Graphic Tee',
+                imgLink: '/products/CollarLess/3.4.png'
+            },
+            {
+                name: 'Crimson Retro Tee',
+                imgLink: '/products/CollarLess/3.5.png'
+            },
+            
         ],
         category: 'shirt',
         hot: true

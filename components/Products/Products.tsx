@@ -15,10 +15,10 @@ const Products = () => {
     const activeTab = productTabs[activeIndx];
 
     return (
-        <div className='py-[5%] px-2 text-center sm:px-4'>
+        <div className='py-[5%] px-4 text-center '>
 
             <div>
-                <h1 className="font-outfit  text-[#FFF455] text-6xl font-black tracking-wide uppercase 
+                <h1 className="font-outfit  text-[#FFF455] text-4xl sm:text-6xl font-black tracking-wide uppercase 
                 [-webkit-text-stroke:2px_black] [paint-order:stroke_fill]">
                     PRODUCTS
                 </h1>
@@ -58,7 +58,7 @@ const Products = () => {
                     </div>
 
                     
-                    <div className='py-[5%] w-full'>
+                    <div className='pt-[5%] w-full'>
                         <ProductSection name={activeTab.id}/>
                     </div>
                 </div>

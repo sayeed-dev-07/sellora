@@ -27,14 +27,14 @@ const News = () => {
     }, {scope: newsContainer})
 
     return (
-        <div ref={newsContainer} className='max-w-7xl  px-1 sm:px-2 md:px-6 mx-auto my-24'>
+        <div ref={newsContainer} className='max-w-7xl  px-1 sm:px-2 md:px-6 mx-auto my-6 md:my-24'>
 
             {/* news notice  */}
             <div className='flex items-center justify-center lg:flex-row flex-col bg-[#eeeeee]'>
-                <div className='border rounded-t-md lg:rounded-t-none  lg:rounded-l-md flex items-center justify-center p-[26.5px] w-full lg:w-fit'>
+                <div className='border rounded-t-md lg:rounded-t-none  lg:rounded-l-md flex items-center justify-center p-3.5 md:p-[26.5px] w-full lg:w-fit'>
                     <Image src={'/svg/news.svg'} alt='newsSvg' className='w-20' height={40} width={100} />
                 </div>
-                <div className='border border-t-0 lg:border-t lg:border-l-0 sm:p-6 p-2 lg:flex-1 w-full flex items-center justify-between gap-y-2 flex-col lg:flex-row text-center rounded-b-md  lg:rounded-r-md lg:rounded-bl-none'>
+                <div className='border border-t-0 lg:border-t lg:border-l-0 sm:p-6 py-3 lg:flex-1 w-full flex items-center justify-between gap-y-2 md:gap-y-2 flex-col lg:flex-row text-center rounded-b-md  lg:rounded-r-md lg:rounded-bl-none'>
                     <p className='text-lg'>
                         <span className="font-bold mr-3 ">February 1, 2026</span> Order 3 items together and get 【✨30% OFF✨】
                     </p>
@@ -47,8 +47,8 @@ const News = () => {
             {/* news text div  */}
 
 
-            <div className=' h-full flex md:flex-row flex-col mt-[10%] font-noto '>
-                <div className='flex gap-y-8 md:gap-y-12 flex-col'>
+            <div className='h-full flex md:flex-row flex-col mt-[10%] font-noto '>
+                <div className='flex gap-y-3 md:gap-y-12 flex-col'>
                     <p className='capitalize text-3xl font-bold'>Buy  the best </p>
                     <p className='sm:max-w-[80%] md:max-w-[70%] flex flex-col items-start justify-between text-[17px] gap-y-6 font-medium tracking-wide leading-relaxed'>
 

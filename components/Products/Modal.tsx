@@ -71,11 +71,10 @@ const Modal = ({ product, onClose, zIndexClassName = 'z-50' }: ModalProps) => {
                                             type='button'
                                             key={`${product.id}-${type.name}-${index}`}
                                             onClick={() => setSelectedTypeIndex(index)}
-                                            className={`relative aspect-square rounded border p-1 transition ${
-                                                isActive
+                                            className={`relative aspect-square rounded border p-1 transition ${isActive
                                                     ? 'border-black ring-2 ring-black/30'
                                                     : 'border-black/20 hover:border-black/60'
-                                            }`}
+                                                }`}
                                             aria-label={`Select ${type.name}`}
                                         >
                                             <Image
@@ -88,6 +87,7 @@ const Modal = ({ product, onClose, zIndexClassName = 'z-50' }: ModalProps) => {
                                     );
                                 })}
                             </div>
+
                         </div>
                     </div>
 
@@ -114,8 +114,12 @@ const Modal = ({ product, onClose, zIndexClassName = 'z-50' }: ModalProps) => {
                                 ))}
                             </ul>
                         )}
+                        <div className=' py-[5%]'>
+                            <button className='border bg-secondary px-5 py-1.5 cursor-pointer font-semibold rounded-sm'>Add to cart</button>
+                        </div>
                     </div>
                 </div>
+
             </div>
         </div>
     );

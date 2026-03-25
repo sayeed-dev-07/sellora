@@ -13,6 +13,7 @@ export default function page() {
         <Feature/>
         <Marquee/>
         <Products/>
+        <Marquee/>
     </div>
   );
 }
