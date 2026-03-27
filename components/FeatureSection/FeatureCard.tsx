@@ -17,7 +17,7 @@ const FeatureCard = ({ id }: { id: 1 | 2 | 3 | 4 }) => {
                     0{data.id}
                 </div>
             </div>
-            <div className='flex flex-col gap-y-3 text-center sm:w-[360px] w-full justify-center pb-[2%] sm:max-w-none'>
+            <div className='flex flex-col gap-y-3 text-center sm:w-90 w-full justify-center pb-[2%] sm:max-w-none'>
                 <h3 className='sm:text-2xl text-xl font-semibold'>{data.title}</h3>
                 <p className='text-start text-sm sm:text-lg'>{data.des}</p>
             </div>
