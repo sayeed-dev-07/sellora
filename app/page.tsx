@@ -5,6 +5,7 @@ import Marquee from "@/components/MarqueeLine";
 import News from "@/components/newsSection/news";
 import OrderFlow from "@/components/OrderFlow/OrderFlow";
 import Products from "@/components/Products/Products";
+import Slogan from "@/components/SloganSection/Slogan";
 
 
 export default function page() {
@@ -18,6 +19,7 @@ export default function page() {
         <Marquee/>
         <OrderFlow/>
         <CaseStudy/>
+        <Slogan/>
     </div>
   );
 }

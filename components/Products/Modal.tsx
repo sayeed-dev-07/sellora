@@ -2,6 +2,7 @@
 
 import { productDetails } from '@/public/data/productsDetails';
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { IoClose } from 'react-icons/io5';
 
@@ -114,8 +115,8 @@ const Modal = ({ product, onClose, zIndexClassName = 'z-50' }: ModalProps) => {
                                 ))}
                             </ul>
                         )}
-                        <div className=' py-[5%]'>
-                            <button className='border bg-secondary px-5 py-1.5 cursor-pointer font-semibold rounded-sm'>Add to cart</button>
+                        <div className='py-[5%]'>
+                            <Link href={`/order/${product.slug}`} className='border bg-secondary px-5 py-1.5 cursor-pointer font-semibold rounded-sm'>Add to cart</Link>
                         </div>
                     </div>
                 </div>

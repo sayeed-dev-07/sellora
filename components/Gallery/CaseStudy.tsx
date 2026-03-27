@@ -4,7 +4,7 @@ import CaseCard from './CaseCard';
 
 const CaseStudy = () => {
     return (
-        <div className='relative  my-[5%]'>
+        <div className='relative  '>
 
             <div className='z-60 absolute left-[3%] top-2 sm:w-fit '>
                 <h1 className="font-outfit  text-foreground md:text-6xl text-[190%] sm:text-5xl font-black  uppercase 
