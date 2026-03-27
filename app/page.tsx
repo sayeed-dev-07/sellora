@@ -1,4 +1,5 @@
 import Feature from "@/components/FeatureSection/Feature";
+import CaseStudy from "@/components/Gallery/CaseStudy";
 import Home from "@/components/HomePage/home";
 import Marquee from "@/components/MarqueeLine";
 import News from "@/components/newsSection/news";
@@ -16,6 +17,7 @@ export default function page() {
         <Products/>
         <Marquee/>
         <OrderFlow/>
+        <CaseStudy/>
     </div>
   );
 }
