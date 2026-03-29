@@ -73,8 +73,8 @@ const Modal = ({ product, onClose, zIndexClassName = 'z-50' }: ModalProps) => {
                                             key={`${product.id}-${type.name}-${index}`}
                                             onClick={() => setSelectedTypeIndex(index)}
                                             className={`relative aspect-square rounded border p-1 transition ${isActive
-                                                    ? 'border-black ring-2 ring-black/30'
-                                                    : 'border-black/20 hover:border-black/60'
+                                                ? 'border-black ring-2 ring-black/30'
+                                                : 'border-black/20 hover:border-black/60'
                                                 }`}
                                             aria-label={`Select ${type.name}`}
                                         >
@@ -96,9 +96,9 @@ const Modal = ({ product, onClose, zIndexClassName = 'z-50' }: ModalProps) => {
                         <h2 className='text-3xl font-bold'>{product.name}</h2>
                         <p className='mt-4 text-base leading-7 text-black/80'>{product.des}</p>
 
-                        {product.meterials?.length > 0 && (
+                        {(product.meterials ?? []).length > 0 && (
                             <p className='mt-5 text-base'>
-                                <span className='font-semibold'>Material:</span> {product.meterials.join(', ')}
+                                <span className='font-semibold'>Material:</span> {(product.meterials ?? []).join(', ')}
                             </p>
                         )}
 
@@ -116,7 +116,7 @@ const Modal = ({ product, onClose, zIndexClassName = 'z-50' }: ModalProps) => {
                             </ul>
                         )}
                         <div className='py-[5%]'>
-                            <Link href={`/order/${product.slug}`} className='border bg-secondary px-5 py-1.5 cursor-pointer font-semibold rounded-sm'>Add to cart</Link>
+                            <Link href={`/order/${product.slug}`} className='border bg-secondary px-5 py-1.5 cursor-pointer font-semibold rounded-sm'>Order</Link>
                         </div>
                     </div>
                 </div>

@@ -1,12 +1,12 @@
 export const productData = [
     {
-        id: '1',
+        id: 1,
         name: 'BOOK DAY Toyama',
         slug: 'book-day-toyama',
         tag: ['Event'],
         type: ['Color Gloves'],
         color: ['Red x White', 'Blue x White', 'Green x White'],
-        size: 'Free',
+        size: ['Free', 'L', 'XL'],
         print: 'PVC print',
         bgUrl: '/img/caseImg/bg1.webp',
         productImg: [
@@ -14,6 +14,21 @@ export const productData = [
             '/img/caseImg/product2.webp',
             '/img/caseImg/product3.webp',
         ],
+        types: [
+            {
+                name: 'Red x White',
+                imgLink: '/img/caseImg/product1.webp'
+            },
+            {
+                name: 'Blue x White',
+                imgLink: '/img/caseImg/product2.webp'
+            },
+            {
+                name: 'Green x White',
+                imgLink: '/img/caseImg/product3.webp'
+            }
+        ],
+
         title: `To be a new novelty staple.
         An original work hand that I'm happy to have.`,
 
@@ -28,13 +43,13 @@ export const productData = [
 
     },
     {
-        id: '2',
+        id: 2,
         name: 'Tooth Manga',
         slug: 'tooth-manga',
         tag: ['Manga artist'],
         type: ['Nobinobi Gloves', 'Touch Panel'],
         color: ['Green x White', 'Yellow x Blue', 'White x Black'],
-        size: 'Free',
+        size: ['Free', 'S', 'L'],
         print: 'PVC print',
         bgUrl: '/img/caseImg/bg2.webp',
         productImg: [
@@ -42,6 +57,21 @@ export const productData = [
             '/img/caseImg/2product2.webp',
             '/img/caseImg/2product3.webp',
         ],
+        types: [
+            {
+                name: 'Green x White',
+                imgLink: '/img/caseImg/2product1.webp'
+            },
+            {
+                name: 'Blue x White',
+                imgLink: '/img/caseImg/2product2.webp'
+            },
+            {
+                name: 'Green x White',
+                imgLink: '/img/caseImg/2product3.webp'
+            }
+        ],
+
         title: `Happy touch panel compatible.
         It's a military hand that can be used even on an everyday basis.`,
 
@@ -56,18 +86,24 @@ export const productData = [
 
     },
     {
-        id: '3',
+        id: 3,
         name: 'Shinmei Onogawa Farm',
         slug: 'shinmei-onogawa-farm',
         tag: ['agriculture'],
         type: ['Junior Gloves'],
         color: ['Blue'],
-        size: 'S',
+        size: ['S', 'L', 'XL'],
         print: 'PVC print',
         bgUrl: '/img/caseImg/bg3.webp',
         productImg: [
             '/img/caseImg/3product1.webp',
 
+        ],
+        types: [
+            {
+                name: 'Blue',
+                imgLink: '/img/caseImg/3product1.webp'
+            }
         ],
         title: `They're all matching!
         For a memorable and enjoyable experience.`,
@@ -84,19 +120,26 @@ export const productData = [
 
     },
     {
-        id: '4',
+        id: 4,
         name: 'Tomoe Miyazaki (STOMACHACHE.)',
         slug: 'tomoe-miyazaki-stomachache',
         tag: ['Illustrator'],
         type: ['Miniature Gloves'],
         color: ['Red x White', 'Blue x White'],
-        size: 'Free',
+        size: ['Free', 'S', 'XL'],
         print: 'PVC print',
         bgUrl: '/img/caseImg/bg4.webp',
         productImg: [
             '/img/caseImg/4product1.webp',
 
         ],
+        types: [
+            {
+                name: 'Red x White',
+                imgLink: '/img/caseImg/4product1.webp'
+            }
+        ],
+
         title: `I can't get enough of your love.
         Small gloves made to full order.`,
 
@@ -114,18 +157,24 @@ export const productData = [
 
     },
     {
-        id: '5',
+        id: 5,
         name: 'GO',
         slug: 'go',
         tag: ['architecture'],
         type: ['Natural rubber', 'backings'],
         color: ['Black x White'],
-        size: 'Free',
+        size: ['Free', 'L'],
         print: 'Inkprint',
         bgUrl: '/img/caseImg/bg5.webp',
         productImg: [
             '/img/caseImg/5product1.webp',
 
+        ],
+        types: [
+            {
+                name: 'Black x White',
+                imgLink: '/img/caseImg/5product1.webp'
+            }
         ],
         title: `Gloves are one tool.
         I want to pay attention to every detail.`,
@@ -142,18 +191,24 @@ export const productData = [
     }
     ,
     {
-        id: '6',
+        id: 6,
         name: 'Toyama GRN Thunderbirds',
         slug: 'toyama-grn-thunderbirds',
         tag: ['Sports'],
         type: ['Workforce (ultra-thin)'],
         color: ['Black x Green'],
-        size: 'L',
+        size: ['S', 'L', 'XL'],
         print: 'Inkprint',
         bgUrl: '/img/caseImg/bg6.webp',
         productImg: [
             '/img/caseImg/6product1.webp',
 
+        ],
+        types: [
+            {
+                name: 'Black x Green',
+                imgLink: '/img/caseImg/6product1.webp'
+            }
         ],
         title: `The circle of support that baseball connects.
         Gloves in return for kindness.`,
@@ -171,19 +226,26 @@ export const productData = [
 
     },
     {
-        id: '7',
+        id: 7,
         name: 'Kataller Toyama',
         slug: 'kataller-toyama',
         tag: ['Sports'],
         type: ['Full Order Gloves'],
         color: ['Blue x Gray'],
-        size: 'Free',
+        size: ['Free', 'S', 'L'],
         print: 'Inkprint',
         bgUrl: '/img/caseImg/bg7.webp',
         productImg: [
             '/img/caseImg/7product1.webp',
 
         ],
+        types: [
+            {
+                name: 'Blue x Gray',
+                imgLink: '/img/caseImg/7product1.webp'
+            }
+        ],
+
         title: `Players, staff and supporters!
         Everyone's uniform gloves.`,
 

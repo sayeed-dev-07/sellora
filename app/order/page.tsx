@@ -4,8 +4,6 @@ import { data } from '@/public/data/SliderData';
 import Image from 'next/image';
 import React from 'react';
 
-
-
 const page = () => {
    <div>
     

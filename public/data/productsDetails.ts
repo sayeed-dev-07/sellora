@@ -1,252 +1,252 @@
 export const productDetails = [
     {
-        "id": 1,
-        "name": "Collar Tee",
-        "des": "Minor batch differences can occur during blank garment production due to variations in fabric, dye and processing. This is common in apparel manufacturing, and we work hard to keep every item consistent.",
-        "feat": [
+        id: 1,
+        name: "Collar Tee",
+        des: "Minor batch differences can occur during blank garment production due to variations in fabric, dye and processing. This is common in apparel manufacturing, and we work hard to keep every item consistent.",
+        feat: [
             "Classic collar design",
             "Comfortable short sleeves",
             "Breathable and lightweight fabric",
             "Smart casual look",
             "Ideal for daily wear, office casual, or outings"
         ],
-        "meterials": [
+        materials: [
             "65% cotton",
             "35% polyester"
         ],
-        "size": [
+        size: [
             "S",
             "M",
             "L",
             "XL"
         ],
-        "types": [
+        types: [
             {
-                "name": "Graphite Dune",
-                "imgLink": "/products/tShirt/1.1.png"
+                name: "Graphite Dune",
+                imgLink: "/products/tShirt/1.1.png"
             },
             {
-                "name": "Graphite Dune 2",
-                "imgLink": "/products/tShirt/1.png"
+                name: "Graphite Dune 2",
+                imgLink: "/products/tShirt/1.png"
             },
             {
-                "name": "Frost White",
-                "imgLink": "/products/tShirt/1.3.png"
+                name: "Frost White",
+                imgLink: "/products/tShirt/1.3.png"
             },
             {
-                "name": "Jet Black",
-                "imgLink": "/products/tShirt/1.4.png"
+                name: "Jet Black",
+                imgLink: "/products/tShirt/1.4.png"
             }
         ],
-        "category": "shirt",
-        "hot": false,
-        "slug": "collar-tee"
+        category: "shirt",
+        hot: false,
+        slug: "collar-tee"
     },
     {
-        "id": 2,
-        "name": "Button's Up Shirt",
-        "des": "A premium, relaxed-fit button-down designed for a breathable and effortless aesthetic. Perfect for layering or wearing on its own during warmer days.",
-        "feat": [
+        id: 2,
+        name: "Button's Up Shirt",
+        des: "A premium, relaxed-fit button-down designed for a breathable and effortless aesthetic. Perfect for layering or wearing on its own during warmer days.",
+        feat: [
             "Relaxed, draped fit",
             "Natural moisture-wicking properties",
             "Button-down collar",
             "Garment-washed for extra softness"
         ],
-        "meterials": [
+        materials: [
             "100% Organic Linen"
         ],
-        "size": [
+        size: [
             "S",
             "M",
             "L"
         ],
-        "types": [
+        types: [
             {
-                "name": "Chocolate Cream Utility Shirt",
-                "imgLink": "/products/pocketShirt/2.1.png"
+                name: "Chocolate Cream Utility Shirt",
+                imgLink: "/products/pocketShirt/2.1.png"
             },
             {
-                "name": "Mono Split Shirt",
-                "imgLink": "/products/pocketShirt/2.2.png"
+                name: "Mono Split Shirt",
+                imgLink: "/products/pocketShirt/2.2.png"
             },
             {
-                "name": "Vintage Aztec Shirt",
-                "imgLink": "/products/pocketShirt/2.3.png"
+                name: "Vintage Aztec Shirt",
+                imgLink: "/products/pocketShirt/2.3.png"
             },
             {
-                "name": "Midnight Tribal Shirt",
-                "imgLink": "/products/pocketShirt/2.4.png"
+                name: "Midnight Tribal Shirt",
+                imgLink: "/products/pocketShirt/2.4.png"
             }
         ],
-        "category": "shirt",
-        "hot": true,
-        "slug": "buttons-up-shirt"
+        category: "shirt",
+        hot: true,
+        slug: "buttons-up-shirt"
     },
     {
-        "id": 3,
-        "name": "CollarLess Tee",
-        "des": "Constructed from dense, high-quality cotton, this tee holds its structured shape all day. Features a dropped shoulder and a wide, cropped fit.",
-        "feat": [
+        id: 3,
+        name: "CollarLess Tee",
+        des: "Constructed from dense, high-quality cotton, this tee holds its structured shape all day. Features a dropped shoulder and a wide, cropped fit.",
+        feat: [
             "Boxy, modern silhouette",
             "Dropped shoulders",
             "Thick ribbed collar",
             "Opaque, heavyweight fabric"
         ],
-        "meterials": [
+        materials: [
             "100% Heavyweight Cotton"
         ],
-        "size": [
+        size: [
             "XS",
             "S",
             "M",
             "L",
             "XL"
         ],
-        "types": [
+        types: [
             {
-                "name": "Shadow Raglan Tee",
-                "imgLink": "/products/CollarLess/3.1.png"
+                name: "Shadow Raglan Tee",
+                imgLink: "/products/CollarLess/3.1.png"
             },
             {
-                "name": "Mocha Sport Tee",
-                "imgLink": "/products/CollarLess/3.2.png"
+                name: "Mocha Sport Tee",
+                imgLink: "/products/CollarLess/3.2.png"
             },
             {
-                "name": "Mono Sport Tee",
-                "imgLink": "/products/CollarLess/3.3.png"
+                name: "Mono Sport Tee",
+                imgLink: "/products/CollarLess/3.3.png"
             },
             {
-                "name": "BlackStar Graphic Tee",
-                "imgLink": "/products/CollarLess/3.4.png"
+                name: "BlackStar Graphic Tee",
+                imgLink: "/products/CollarLess/3.4.png"
             },
             {
-                "name": "Crimson Retro Tee",
-                "imgLink": "/products/CollarLess/3.5.png"
+                name: "Crimson Retro Tee",
+                imgLink: "/products/CollarLess/3.5.png"
             }
         ],
-        "category": "shirt",
-        "hot": true,
-        "slug": "collarless-tee"
+        category: "shirt",
+        hot: true,
+        slug: "collarless-tee"
     },
     {
-        "id": 4,
-        "name": "Classic Minimal Leather Sneaker",
-        "des": "A clean, timeless silhouette made with full-grain leather. Built for daily wear with a supportive cushioned insole and durable rubber outsole.",
-        "feat": [
+        id: 4,
+        name: "Classic Minimal Leather Sneaker",
+        des: "A clean, timeless silhouette made with full-grain leather. Built for daily wear with a supportive cushioned insole and durable rubber outsole.",
+        feat: [
             "Sleek, unbranded profile",
             "Cushioned orthopedic insole",
             "Waxed cotton laces",
             "Hand-stitched cupsole"
         ],
-        "meterials": [
+        materials: [
             "100% Full-grain Leather Upper",
             "Rubber Outsole"
         ],
-        "size": [
+        size: [
             "8",
             "9",
             "10",
             "11",
             "12"
         ],
-        "types": [
+        types: [
             {
-                "name": "Triple White",
-                "imgLink": "/showCase/leatherShoe.jpg"
+                name: "Triple White",
+                imgLink: "/showCase/leatherShoe.jpg"
             },
             {
-                "name": "Black/White",
-                "imgLink": "/showCase/leatherShoe.jpg"
+                name: "Black/White",
+                imgLink: "/showCase/leatherShoe.jpg"
             }
         ],
-        "category": "shoes",
-        "hot": true,
-        "slug": "classic-minimal-leather-sneaker"
+        category: "shoes",
+        hot: true,
+        slug: "classic-minimal-leather-sneaker"
     },
     {
-        "id": 5,
-        "name": "Suede Chelsea Boot",
-        "des": "Elevate your smart-casual wardrobe. These boots feature an almond toe, elasticated side panels for easy slipping on, and a low stacked heel.",
-        "feat": [
+        id: 5,
+        name: "Suede Chelsea Boot",
+        des: "Elevate your smart-casual wardrobe. These boots feature an almond toe, elasticated side panels for easy slipping on, and a low stacked heel.",
+        feat: [
             "Premium suede finish",
             "Elasticated gussets",
             "Nylon pull tabs",
             "Crepe rubber sole for comfort"
         ],
-        "meterials": [
+        materials: [
             "100% Calf Suede",
             "Crepe Rubber Sole"
         ],
-        "size": [
+        size: [
             "8",
             "9",
             "10",
             "11"
         ],
-        "types": [
+        types: [
             {
-                "name": "Sand",
-                "imgLink": "/showCase/chalceShoe.jpg"
+                name: "Sand",
+                imgLink: "/showCase/chalceShoe.jpg"
             },
             {
-                "name": "Charcoal",
-                "imgLink": "/showCase/chalceShoe.jpg"
+                name: "Charcoal",
+                imgLink: "/showCase/chalceShoe.jpg"
             }
         ],
-        "category": "shoes",
-        "hot": false,
-        "slug": "suede-chelsea-boot"
+        category: "shoes",
+        hot: false,
+        slug: "suede-chelsea-boot"
     },
     {
-        "id": 6,
-        "name": "Chunky Leather Loafer",
-        "des": "A modern take on the classic penny loafer, updated with a thick, lugged outsole for an edgier, contemporary profile.",
-        "feat": [
+        id: 6,
+        name: "Chunky Leather Loafer",
+        des: "A modern take on the classic penny loafer, updated with a thick, lugged outsole for an edgier, contemporary profile.",
+        feat: [
             "Slip-on design",
             "Exaggerated lug sole",
             "Classic penny strap detail",
             "Breathable leather lining"
         ],
-        "meterials": [
+        materials: [
             "100% Polished Leather Upper",
             "EVA Chunky Sole"
         ],
-        "size": [
+        size: [
             "7",
             "8",
             "9",
             "10",
             "11"
         ],
-        "types": [
+        types: [
             {
-                "name": "Polished Black",
-                "imgLink": "/showCase/loferShoe.jpg"
+                name: "Polished Black",
+                imgLink: "/showCase/loferShoe.jpg"
             },
             {
-                "name": "Deep Burgundy",
-                "imgLink": "/showCase/loferShoe.jpg"
+                name: "Deep Burgundy",
+                imgLink: "/showCase/loferShoe.jpg"
             }
         ],
-        "category": "shoes",
-        "hot": true,
-        "slug": "chunky-leather-loafer"
+        category: "shoes",
+        hot: true,
+        slug: "chunky-leather-loafer"
     },
     {
-        "id": 7,
-        "name": "Retro Runner Trainer",
-        "des": "Inspired by 90s track shoes, this trainer blends breathable mesh panels with suede overlays for a textured, sporty look.",
-        "feat": [
+        id: 7,
+        name: "Retro Runner Trainer",
+        des: "Inspired by 90s track shoes, this trainer blends breathable mesh panels with suede overlays for a textured, sporty look.",
+        feat: [
             "Lightweight construction",
             "Shock-absorbing EVA midsole",
             "Padded tongue and collar",
             "High-traction tread"
         ],
-        "meterials": [
+        materials: [
             "Suede and Mesh Upper",
             "Foam Midsole"
         ],
-        "size": [
+        size: [
             "8",
             "8.5",
             "9",
@@ -254,452 +254,452 @@ export const productDetails = [
             "10",
             "11"
         ],
-        "types": [
+        types: [
             {
-                "name": "Grey/Navy",
-                "imgLink": "/showCase/runnerShoe.jpg"
+                name: "Grey/Navy",
+                imgLink: "/showCase/runnerShoe.jpg"
             },
             {
-                "name": "Cream/Green",
-                "imgLink": "/showCase/runnerShoe.jpg"
+                name: "Cream/Green",
+                imgLink: "/showCase/runnerShoe.jpg"
             }
         ],
-        "category": "shoes",
-        "hot": false,
-        "slug": "retro-runner-trainer"
+        category: "shoes",
+        hot: false,
+        slug: "retro-runner-trainer"
     },
     {
-        "id": 8,
-        "name": "Men's Outdoor Mountaineering Jacket",
-        "des": "Stay warm without the bulk. This puffer is filled with an eco-friendly down alternative and features a water-repellent matte exterior.",
-        "feat": [
+        id: 8,
+        name: "Men's Outdoor Mountaineering Jacket",
+        des: "Stay warm without the bulk. This puffer is filled with an eco-friendly down alternative and features a water-repellent matte exterior.",
+        feat: [
             "Water-resistant and windproof",
             "Hidden zip pockets",
             "Adjustable bungee hem",
             "Internal chest pocket"
         ],
-        "meterials": [
+        materials: [
             "100% Recycled Nylon Shell",
             "100% Polyester Insulation"
         ],
-        "size": [
+        size: [
             "S",
             "M",
             "L",
             "XL"
         ],
-        "types": [
+        types: [
             {
-                "name": "Matte Black",
-                "imgLink": "/showCase/OutdoorJacket.jpg"
+                name: "Matte Black",
+                imgLink: "/showCase/OutdoorJacket.jpg"
             },
             {
-                "name": "Olive Green",
-                "imgLink": "/showCase/OutdoorJacket.jpg"
+                name: "Olive Green",
+                imgLink: "/showCase/OutdoorJacket.jpg"
             }
         ],
-        "category": "jacket",
-        "hot": true,
-        "slug": "mens-outdoor-mountaineering-jacket"
+        category: "jacket",
+        hot: true,
+        slug: "mens-outdoor-mountaineering-jacket"
     },
     {
-        "id": 9,
-        "name": "Work Black Color block Jacket",
-        "des": "A rugged staple piece. This trucker jacket has been enzyme-washed for a perfectly lived-in feel right out of the box.",
-        "feat": [
+        id: 9,
+        name: "Work Black Color block Jacket",
+        des: "A rugged staple piece. This trucker jacket has been enzyme-washed for a perfectly lived-in feel right out of the box.",
+        feat: [
             "Standard classic fit",
             "Button flap chest pockets",
             "Welt hand pockets",
             "Adjustable waist tabs"
         ],
-        "meterials": [
+        meterials: [
             "98% Cotton",
             "2% Elastane"
         ],
-        "size": [
+        size: [
             "M",
             "L",
             "XL",
             "XXL"
         ],
-        "types": [
+        types: [
             {
-                "name": "Light Wash",
-                "imgLink": "/showCase/blockJacket.jpg"
+                name: "Light Wash",
+                imgLink: "/showCase/blockJacket.jpg"
             },
             {
-                "name": "Vintage Black",
-                "imgLink": "/showCase/blockJacket.jpg"
+                name: "Vintage Black",
+                imgLink: "/showCase/blockJacket.jpg"
             }
         ],
-        "category": "jacket",
-        "hot": false,
-        "slug": "work-black-color-block-jacket"
+        category: "jacket",
+        hot: false,
+        slug: "work-black-color-block-jacket"
     },
     {
-        "id": 10,
-        "name": "Vintage McLaren Adult Embroidery Jacket",
-        "des": "Sleek, moto-inspired jacket made from premium supple vegan leather. Features silver-tone hardware and a minimalist band collar.",
-        "feat": [
+        id: 10,
+        name: "Vintage McLaren Adult Embroidery Jacket",
+        des: "Sleek, moto-inspired jacket made from premium supple vegan leather. Features silver-tone hardware and a minimalist band collar.",
+        feat: [
             "Slim tailored fit",
             "Band collar with snap closure",
             "Zip cuffs",
             "Silky interior lining"
         ],
-        "meterials": [
+        meterials: [
             "100% Polyurethane Exterior",
             "100% Polyester Lining"
         ],
-        "size": [
+        size: [
             "S",
             "M",
             "L"
         ],
-        "types": [
+        types: [
             {
-                "name": "Black",
-                "imgLink": "/showCase/MclarenJacket.jpg"
+                name: "Black",
+                imgLink: "/showCase/MclarenJacket.jpg"
             }
         ],
-        "category": "jacket",
-        "hot": true,
-        "slug": "vintage-mclaren-adult-embroidery-jacket"
+        category: "jacket",
+        hot: true,
+        slug: "vintage-mclaren-adult-embroidery-jacket"
     },
     {
-        "id": 11,
-        "name": "Relaxed Fit Flannel Check Shirt",
-        "des": "A cozy, versatile flannel shirt crafted for layering or standalone wear. Designed with a soft brushed finish for added comfort.",
-        "feat": [
+        id: 11,
+        name: "Relaxed Fit Flannel Check Shirt",
+        des: "A cozy, versatile flannel shirt crafted for layering or standalone wear. Designed with a soft brushed finish for added comfort.",
+        feat: [
             "Soft brushed texture",
             "Classic plaid patterns",
             "Relaxed fit silhouette",
             "Button-down front and cuffs"
         ],
-        "meterials": [
+        meterials: [
             "100% Cotton Flannel"
         ],
-        "size": [
+        size: [
             "S",
             "M",
             "L",
             "XL"
         ],
-        "types": [
+        types: [
             {
-                "name": "Red/Black Check",
-                "imgLink": "/showCase/checkShirt.jpg"
+                name: "Red/Black Check",
+                imgLink: "/showCase/checkShirt.jpg"
             },
             {
-                "name": "Blue/White Check",
-                "imgLink": "/showCase/checkShirt.jpg"
+                name: "Blue/White Check",
+                imgLink: "/showCase/checkShirt.jpg"
             }
         ],
-        "category": "shirt",
-        "hot": false,
-        "slug": "relaxed-fit-flannel-check-shirt"
+        category: "shirt",
+        hot: false,
+        slug: "relaxed-fit-flannel-check-shirt"
     },
     {
-        "id": 12,
-        "name": "Slim Fit Oxford Shirt",
-        "des": "A refined wardrobe essential with a tailored fit, ideal for both office and smart-casual settings.",
-        "feat": [
+        id: 12,
+        name: "Slim Fit Oxford Shirt",
+        des: "A refined wardrobe essential with a tailored fit, ideal for both office and smart-casual settings.",
+        feat: [
             "Structured slim fit",
             "Button-down collar",
             "Durable Oxford weave",
             "Wrinkle-resistant finish"
         ],
-        "meterials": [
+        meterials: [
             "100% Cotton"
         ],
-        "size": [
+        size: [
             "S",
             "M",
             "L",
             "XL"
         ],
-        "types": [
+        types: [
             {
-                "name": "Sky Blue",
-                "imgLink": "/showCase/oxfordShirt.jpg"
+                name: "Sky Blue",
+                imgLink: "/showCase/oxfordShirt.jpg"
             },
             {
-                "name": "Crisp White",
-                "imgLink": "/showCase/oxfordShirt.jpg"
+                name: "Crisp White",
+                imgLink: "/showCase/oxfordShirt.jpg"
             }
         ],
-        "category": "shirt",
-        "hot": true,
-        "slug": "slim-fit-oxford-shirt"
+        category: "shirt",
+        hot: true,
+        slug: "slim-fit-oxford-shirt"
     },
     {
-        "id": 13,
-        "name": "Graphic Streetwear Tee",
-        "des": "A bold statement tee featuring high-quality screen prints and a relaxed streetwear fit.",
-        "feat": [
+        id: 13,
+        name: "Graphic Streetwear Tee",
+        des: "A bold statement tee featuring high-quality screen prints and a relaxed streetwear fit.",
+        feat: [
             "Eye-catching graphic prints",
             "Soft breathable fabric",
             "Relaxed oversized fit",
             "Fade-resistant colors"
         ],
-        "meterials": [
+        meterials: [
             "100% Cotton Jersey"
         ],
-        "size": [
+        size: [
             "S",
             "M",
             "L",
             "XL"
         ],
-        "types": [
+        types: [
             {
-                "name": "Black Print",
-                "imgLink": "/showCase/streetShirt.jpg"
+                name: "Black Print",
+                imgLink: "/showCase/streetShirt.jpg"
             },
             {
-                "name": "White Print",
-                "imgLink": "/showCase/streetShirt.jpg"
+                name: "White Print",
+                imgLink: "/showCase/streetShirt.jpg"
             }
         ],
-        "category": "shirt",
-        "hot": true,
-        "slug": "graphic-streetwear-tee"
+        category: "shirt",
+        hot: true,
+        slug: "graphic-streetwear-tee"
     },
     {
-        "id": 14,
-        "name": "Lightweight Knit Hoodie",
-        "des": "A breathable hoodie designed for year-round layering with a clean and minimal aesthetic.",
-        "feat": [
+        id: 14,
+        name: "Lightweight Knit Hoodie",
+        des: "A breathable hoodie designed for year-round layering with a clean and minimal aesthetic.",
+        feat: [
             "Lightweight knit fabric",
             "Adjustable drawstring hood",
             "Kangaroo pocket",
             "Ribbed cuffs and hem"
         ],
-        "meterials": [
+        meterials: [
             "60% Cotton",
             "40% Polyester"
         ],
-        "size": [
+        size: [
             "S",
             "M",
             "L",
             "XL"
         ],
-        "types": [
+        types: [
             {
-                "name": "Heather Grey",
-                "imgLink": "/showCase/neetHoddie.jpg"
+                name: "Heather Grey",
+                imgLink: "/showCase/neetHoddie.jpg"
             },
             {
-                "name": "Dusty Blue",
-                "imgLink": "/showCase/neetHoddie.jpg"
+                name: "Dusty Blue",
+                imgLink: "/showCase/neetHoddie.jpg"
             }
         ],
-        "category": "jacket",
-        "hot": true,
-        "slug": "lightweight-knit-hoodie"
+        category: "jacket",
+        hot: true,
+        slug: "lightweight-knit-hoodie"
     },
     {
-        "id": 15,
-        "name": "Waterproof Hiking Boots",
-        "des": "Built for durability and traction, these boots are perfect for outdoor adventures and rough terrains.",
-        "feat": [
+        id: 15,
+        name: "Waterproof Hiking Boots",
+        des: "Built for durability and traction, these boots are perfect for outdoor adventures and rough terrains.",
+        feat: [
             "Waterproof membrane",
             "High ankle support",
             "Anti-slip rugged sole",
             "Reinforced toe cap"
         ],
-        "meterials": [
+        meterials: [
             "Synthetic Leather",
             "Rubber Sole"
         ],
-        "size": [
+        size: [
             "8",
             "9",
             "10",
             "11",
             "12"
         ],
-        "types": [
+        types: [
             {
-                "name": "Dark Brown",
-                "imgLink": "/showCase/hikingBoots.jpg"
+                name: "Dark Brown",
+                imgLink: "/showCase/hikingBoots.jpg"
             },
             {
-                "name": "Black",
-                "imgLink": "/showCase/hikingBoots.jpg"
+                name: "Black",
+                imgLink: "/showCase/hikingBoots.jpg"
             }
         ],
-        "category": "shoes",
-        "hot": false,
-        "slug": "waterproof-hiking-boots"
+        category: "shoes",
+        hot: false,
+        slug: "waterproof-hiking-boots"
     },
     {
-        "id": 16,
-        "name": "Breathable Slip-On Knit Sneakers",
-        "des": "Ultra-light sneakers designed for all-day comfort with a flexible knit upper and slip-on convenience.",
-        "feat": [
+        id: 16,
+        name: "Breathable Slip-On Knit Sneakers",
+        des: "Ultra-light sneakers designed for all-day comfort with a flexible knit upper and slip-on convenience.",
+        feat: [
             "Stretchable knit upper",
             "Slip-on design",
             "Lightweight cushioning",
             "Breathable structure"
         ],
-        "meterials": [
+        meterials: [
             "Knit Fabric Upper",
             "EVA Sole"
         ],
-        "size": [
+        size: [
             "7",
             "8",
             "9",
             "10",
             "11"
         ],
-        "types": [
+        types: [
             {
-                "name": "All Black",
-                "imgLink": "/showCase/slipOnShoe.jpg"
+                name: "All Black",
+                imgLink: "/showCase/slipOnShoe.jpg"
             },
             {
-                "name": "Grey/White",
-                "imgLink": "/showCase/slipOnShoe.jpg"
+                name: "Grey/White",
+                imgLink: "/showCase/slipOnShoe.jpg"
             }
         ],
-        "category": "shoes",
-        "hot": true,
-        "slug": "breathable-slip-on-knit-sneakers"
+        category: "shoes",
+        hot: true,
+        slug: "breathable-slip-on-knit-sneakers"
     },
     {
-        "id": 17,
-        "name": "Tailored Wool Blend Overcoat",
-        "des": "A sophisticated outerwear piece crafted for colder seasons with a sharp tailored finish.",
-        "feat": [
+        id: 17,
+        name: "Tailored Wool Blend Overcoat",
+        des: "A sophisticated outerwear piece crafted for colder seasons with a sharp tailored finish.",
+        feat: [
             "Structured longline fit",
             "Double-button closure",
             "Soft inner lining",
             "Classic lapel collar"
         ],
-        "meterials": [
+        meterials: [
             "70% Wool",
             "30% Polyester"
         ],
-        "size": [
+        size: [
             "M",
             "L",
             "XL"
         ],
-        "types": [
+        types: [
             {
-                "name": "Charcoal Grey",
-                "imgLink": "/showCase/OverCoat.jpg"
+                name: "Charcoal Grey",
+                imgLink: "/showCase/OverCoat.jpg"
             },
             {
-                "name": "Camel",
-                "imgLink": "/showCase/OverCoat.jpg"
+                name: "Camel",
+                imgLink: "/showCase/OverCoat.jpg"
             }
         ],
-        "category": "jacket",
-        "hot": true,
-        "slug": "tailored-wool-blend-overcoat"
+        category: "jacket",
+        hot: true,
+        slug: "tailored-wool-blend-overcoat"
     },
     {
-        "id": 18,
-        "name": "Casual Zip-Up Bomber Jacket",
-        "des": "A modern bomber jacket with a clean silhouette, perfect for transitional weather.",
-        "feat": [
+        id: 18,
+        name: "Casual Zip-Up Bomber Jacket",
+        des: "A modern bomber jacket with a clean silhouette, perfect for transitional weather.",
+        feat: [
             "Lightweight insulation",
             "Ribbed cuffs and hem",
             "Full zip closure",
             "Minimalist design"
         ],
-        "meterials": [
+        meterials: [
             "100% Polyester"
         ],
-        "size": [
+        size: [
             "S",
             "M",
             "L",
             "XL"
         ],
-        "types": [
+        types: [
             {
-                "name": "Olive",
-                "imgLink": "/showCase/zipUp.jpg"
+                name: "Olive",
+                imgLink: "/showCase/zipUp.jpg"
             },
             {
-                "name": "Black",
-                "imgLink": "/showCase/zipUp.jpg"
+                name: "Black",
+                imgLink: "/showCase/zipUp.jpg"
             }
         ],
-        "category": "jacket",
-        "hot": false,
-        "slug": "casual-zip-up-bomber-jacket"
+        category: "jacket",
+        hot: false,
+        slug: "casual-zip-up-bomber-jacket"
     },
     {
-        "id": 19,
-        "name": "Canvas Low-Top Sneakers",
-        "des": "Classic everyday sneakers made with durable canvas and a timeless low-top design.",
-        "feat": [
+        id: 19,
+        name: "Canvas Low-Top Sneakers",
+        des: "Classic everyday sneakers made with durable canvas and a timeless low-top design.",
+        feat: [
             "Lightweight canvas upper",
             "Rubber toe cap",
             "Flexible sole",
             "Lace-up closure"
         ],
-        "meterials": [
+        meterials: [
             "Canvas Upper",
             "Rubber Sole"
         ],
-        "size": [
+        size: [
             "7",
             "8",
             "9",
             "10",
             "11"
         ],
-        "types": [
+        types: [
             {
-                "name": "Classic White",
-                "imgLink": "/showCase/lowTop.jpg"
+                name: "Classic White",
+                imgLink: "/showCase/lowTop.jpg"
             },
             {
-                "name": "Navy",
-                "imgLink": "/showCase/lowTop.jpg"
+                name: "Navy",
+                imgLink: "/showCase/lowTop.jpg"
             }
         ],
-        "category": "shoes",
-        "hot": false,
-        "slug": "canvas-low-top-sneakers"
+        category: "shoes",
+        hot: false,
+        slug: "canvas-low-top-sneakers"
     },
     {
-        "id": 20,
-        "name": "Premium Cotton Henley Shirt",
-        "des": "A timeless henley featuring a buttoned placket and soft cotton construction for everyday comfort.",
-        "feat": [
+        id: 20,
+        name: "Premium Cotton Henley Shirt",
+        des: "A timeless henley featuring a buttoned placket and soft cotton construction for everyday comfort.",
+        feat: [
             "Three-button placket",
             "Soft-touch fabric",
             "Slim comfortable fit",
             "Versatile styling"
         ],
-        "meterials": [
+        meterials: [
             "100% Cotton"
         ],
-        "size": [
+        size: [
             "S",
             "M",
             "L",
             "XL"
         ],
-        "types": [
+        types: [
             {
-                "name": "Olive Green",
-                "imgLink": "/showCase/cottonShirt.jpg"
+                name: "Olive Green",
+                imgLink: "/showCase/cottonShirt.jpg"
             },
             {
-                "name": "Beige",
-                "imgLink": "/showCase/cottonShirt.jpg"
+                name: "Beige",
+                imgLink: "/showCase/cottonShirt.jpg"
             }
         ],
-        "category": "shirt",
-        "hot": true,
-        "slug": "premium-cotton-henley-shirt"
+        category: "shirt",
+        hot: true,
+        slug: "premium-cotton-henley-shirt"
     }
 ];

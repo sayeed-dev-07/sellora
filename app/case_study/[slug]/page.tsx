@@ -4,6 +4,7 @@ import ProductImageSlider from '@/components/CaseStudy/ProductImageSlider';
 import Image from 'next/image';
 import Line from '@/components/CaseStudy/line';
 import { MdShoppingCart } from 'react-icons/md';
+import Link from 'next/link';
 
 const page = async ({ params }: { params: Promise<{ slug: string }> }) => {
 
@@ -224,7 +225,7 @@ const page = async ({ params }: { params: Promise<{ slug: string }> }) => {
                             <Line />
                             <div className='grid grid-cols-[120px_1fr] sm:grid-cols-[170px_1fr] items-start gap-x-4 px-8 mt-6 mb-4'>
                                 <span className='font-semibold text-lg'>Size</span>
-                                <span className='text-left'>{data.size}</span>
+                                <span className='text-left'>{data.size.join(', ')}</span>
                             </div>
                             <Line />
                             <div className='grid grid-cols-[120px_1fr] sm:grid-cols-[170px_1fr] items-start gap-x-4 px-8 mt-6 mb-4'>
@@ -232,12 +233,12 @@ const page = async ({ params }: { params: Promise<{ slug: string }> }) => {
                                 <span className='text-left '>{data.print}</span>
                             </div>
 
-                            
+
                         </div>
                         <div className='flex items-center justify-center mt-8 mb-4'>
-                            <div className='px-5 py-4 rounded-lg bg-secondary  border  mt-6 mb-4  sm:text-base text-xl uppercase text-background flex items-center gap-x-2 font-semibold cursor-pointer  w-fit'>
-                            <MdShoppingCart size={30}/> get the item
-                        </div>
+                            <Link href={`/order/${data.slug}`} className='px-5 py-4 rounded-lg bg-secondary  border  mt-6 mb-4  sm:text-base text-xl uppercase text-background flex items-center gap-x-2 font-semibold cursor-pointer  w-fit'>
+                                <MdShoppingCart size={30} /> get the item
+                            </Link>
                         </div>
                     </div>
                 </div>
