@@ -231,7 +231,7 @@ const page = async ({ params }: { params: Promise<{ slug: string }> }) => {
                             <div className='bg-[#eeeeee] text-background p-4 sm:p-6 mb-12 flex flex-col gap-y-2.5 sm:gap-y-4 rounded-lg'>
                                 <p className='text-xl font-semibold'>{data.name}</p>
                                 <p>{data.linkText}</p>
-                                <a className='w-fit font-semibold text-[#757575]' href={data.link} target="_blank" rel="noopener noreferrer">
+                                <a className='w-fit font-semibold   break-all text-[#757575]' href={data.link} target="_blank" rel="noopener noreferrer">
                                     @{data.link}
                                 </a>
                             </div>
