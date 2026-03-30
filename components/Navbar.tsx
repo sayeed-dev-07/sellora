@@ -11,6 +11,7 @@ gsap.registerPlugin(useGSAP)
 const navItems = [
     { label: 'Home', href: '/' },
     { label: 'Features', href: '/#features' },
+    { label: 'Order', href: '/order' },
     { label: 'Products', href: '/#products' },
     { label: 'Order flow', href: '/#order-flow' },
     { label: 'Use cases', href: '/#use-cases' },

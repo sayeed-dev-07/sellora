@@ -280,9 +280,9 @@ const page = async ({ params }: { params: Promise<{ slug: string }> }) => {
 
 
                         </div>
-                        <div className='flex items-center justify-center mt-8 mb-4'>
-                            <Link href={`/order/${data.slug}`} className='px-5 py-4 rounded-lg bg-secondary  border  mt-6 mb-4  sm:text-base text-xl uppercase text-background flex items-center gap-x-2 font-semibold cursor-pointer  w-fit'>
-                                <MdShoppingCart size={30} /> get the item
+                        <div className='flex items-center text-lg sm:text-xl justify-center sm:mt-8 mt-3 mb-4'>
+                            <Link href={`/order/${data.slug}`} className='sm:px-5 px-4 py-1.5 sm:py-4 rounded-lg bg-secondary  border  mt-6 mb-4   uppercase text-background flex items-center gap-x-2 font-semibold cursor-pointer  w-fit'>
+                                <MdShoppingCart/> get the item
                             </Link>
                         </div>
                     </div>
