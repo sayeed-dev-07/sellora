@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import {  Noto_Sans_JP, Outfit,  } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -27,11 +28,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${notoSans.variable} ${outfit.variable} antialiased`}
+        className={`${notoSans.variable} ${outfit.variable} min-h-screen antialiased`}
       >
-        <Navbar />
-        <div className="">
-          {children}
+        <div className="flex min-h-screen flex-col">
+          <Navbar />
+          <main className="flex-1">
+            {children}
+          </main>
+          <Footer />
         </div>
       </body>
     </html>
