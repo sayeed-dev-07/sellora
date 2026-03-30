@@ -157,10 +157,9 @@ const OrderPage = ({ data }: { data: dataType }) => {
                 <div className='sm:py-12 py-5 flex flex-col gap-y-6 sm:gap-y-12'>
                     {/* step 1 */}
                     <div>
-                        <div className='flex items-start sm:items-center gap-x-3 sm:gap-x-6
-                            '>
-                            <div className='px-3 py-1 font-semibold border rounded-sm w-fit bg-secondary text-nowrap'>STEP 1</div>
-                            <p className='text-2xl font-semibold'>Choose your product, type, and size</p>
+                        <div className='flex flex-col items-start gap-y-3 sm:flex-row sm:items-center sm:gap-x-6 sm:gap-y-0'>
+                            <div className='px-3 py-1 font-semibold border rounded-sm w-fit h-auto bg-secondary text-nowrap'>STEP 1</div>
+                            <p className='text-2xl font-semibold '>Choose your product, type, and size</p>
                         </div>
                         <div className='text-lg capitalize flex flex-col gap-y-2'>
                             <h2 className='mt-3'><span className='font-semibold'>Product</span> : {formData.product}</h2>
@@ -200,8 +199,7 @@ const OrderPage = ({ data }: { data: dataType }) => {
 
                     {/* step 2  */}
                     <div>
-                        <div className='flex items-start sm:items-center gap-x-3 sm:gap-x-6
-                            '>
+                        <div className='flex flex-col items-start gap-y-3 sm:flex-row sm:items-center sm:gap-x-6 sm:gap-y-0'>
                             <div className='px-3 py-1 font-semibold border rounded-sm w-fit bg-secondary text-nowrap '>STEP 2</div>
                             <p className='text-2xl font-semibold'>Choose a print color</p>
                         </div>
@@ -238,8 +236,7 @@ const OrderPage = ({ data }: { data: dataType }) => {
 
                     {/* step 3 */}
                     <div>
-                        <div className='flex items-start sm:items-center gap-x-3 sm:gap-x-6
-                            '>
+                        <div className='flex flex-col items-start gap-y-3 sm:flex-row sm:items-center sm:gap-x-6 sm:gap-y-0'>
                             <div className='px-3 py-1 font-semibold border rounded-sm w-fit bg-secondary text-nowrap'>STEP 3</div>
                             <p className='text-2xl font-semibold'>Enter quantity</p>
                         </div>
@@ -264,8 +261,7 @@ const OrderPage = ({ data }: { data: dataType }) => {
 
                     {/* step 4  */}
                     <div>
-                        <div className='flex items-start sm:items-center gap-x-3 sm:gap-x-6
-                            '>
+                        <div className='flex flex-col items-start gap-y-3 sm:flex-row sm:items-center sm:gap-x-6 sm:gap-y-0'>
                             <div className='px-3 py-1 font-semibold border rounded-sm w-fit bg-secondary text-nowrap'>STEP 4</div>
                             <p className='text-2xl font-semibold'>Enter your customer information</p>
                         </div>

@@ -21,7 +21,7 @@ const getMotionConfig = (viewportWidth: number) => {
   return {
     isSmallScreen,
     autoplayDelay: isSmallScreen ? MOBILE_AUTOPLAY_DELAY : AUTOPLAY_DELAY,
-    slideDuration: isSmallScreen ? 0.6 : 1,
+    slideDuration: isSmallScreen ? 0.45 : 1,
     entranceTrackDuration: isSmallScreen ? 0.55 : 0.8,
     entranceHandDuration: isSmallScreen ? 0.45 : 0.75,
   }
