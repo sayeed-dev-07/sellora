@@ -1,34 +1,90 @@
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import OrderPage from "@/components/OrderSection/OrderPage";
+import { productData } from "@/public/data/productData";
+import { productDetails } from "@/public/data/productsDetails";
+import { createPageMetadata, siteConfig } from "@/lib/seo";
 
-import OrderPage from '@/components/OrderSection/OrderPage';
-import { productData } from '@/public/data/productData';
-import { productDetails } from '@/public/data/productsDetails';
+type CatalogProduct = (typeof productDetails)[number];
+type CaseStudyProduct = (typeof productData)[number];
 
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react';
+export type dataType = CatalogProduct | CaseStudyProduct;
 
-export interface dataType {
-    id: number,
-    name: string,  
-    types: {name: string, imgLink: string}[],
-    size: string[],
+function getOrderProduct(slug: string) {
+  return [...productDetails, ...productData].find((item) => item.slug === slug);
 }
 
-const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
+function formatList(items: string[], limit = 3) {
+  const uniqueItems = [...new Set(items.filter(Boolean))];
 
-    const { slug } = await params
-    const data = [...productDetails, ...productData].find(item => item.slug === slug)
+  if (uniqueItems.length <= limit) {
+    return uniqueItems.join(", ");
+  }
 
-    
+  return `${uniqueItems.slice(0, limit).join(", ")}, and more`;
+}
 
-    if (!data) {
-        return <div>Product not found</div>;
-    }
+function getOrderDescription(data: dataType) {
+  if ("des" in data) {
+    return `Request a quote for ${data.name}, a ${data.category} style available in ${formatList(data.size)} with ${data.types.length} product variations.`;
+  }
 
-    return (
-        <OrderPage data={data} />
-    );
-};
+  return `Request a quote for ${data.name} with ${formatList(data.type).toLowerCase()} customization, ${data.print.toLowerCase()}, sizes ${formatList(data.size)}, and colors ${formatList(data.color)}.`;
+}
 
-export default Page;
+function getOrderKeywords(data: dataType) {
+  if ("des" in data) {
+    return [data.name, data.category, ...data.size, ...data.types.map((item) => item.name)];
+  }
 
+  return [data.name, ...data.tag, ...data.type, ...data.color, ...data.size];
+}
+
+function getOrderImage(data: dataType) {
+  if ("des" in data) {
+    return data.types[0]?.imgLink ?? siteConfig.defaultImage;
+  }
+
+  return data.productImg[0] ?? data.bgUrl ?? siteConfig.defaultImage;
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const data = getOrderProduct(slug);
+
+  if (!data) {
+    return createPageMetadata({
+      title: "Product Not Found",
+      description: "The product you requested could not be found on Sellora.",
+      path: `/order/${slug}`,
+      noIndex: true,
+    });
+  }
+
+  return createPageMetadata({
+    title: `Order ${data.name}`,
+    description: getOrderDescription(data),
+    path: `/order/${data.slug}`,
+    image: getOrderImage(data),
+    keywords: getOrderKeywords(data),
+  });
+}
+
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const data = getOrderProduct(slug);
+
+  if (!data) {
+    notFound();
+  }
+
+  return <OrderPage data={data} />;
+}

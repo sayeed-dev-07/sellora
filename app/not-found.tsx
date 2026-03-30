@@ -1,4 +1,12 @@
+import type { Metadata } from "next";
 import React from 'react';
+import { createPageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = createPageMetadata({
+    title: "Page Not Found",
+    description: "The page you requested could not be found on Sellora.",
+    noIndex: true,
+});
 
 const page = () => {
     return (

@@ -1,10 +1,9 @@
 "use client"; // Required for Next.js App Router when using hooks and GSAP
 
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { data } from "@/public/data/SliderData";
 
 gsap.registerPlugin(useGSAP)
 

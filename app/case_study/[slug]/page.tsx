@@ -1,20 +1,65 @@
-
+import type { Metadata } from "next";
 import { productData } from '@/public/data/productData';
 import ProductImageSlider from '@/components/CaseStudy/ProductImageSlider';
 import Image from 'next/image';
 import Line from '@/components/CaseStudy/line';
 import { MdShoppingCart } from 'react-icons/md';
 import Link from 'next/link';
+import { createPageMetadata, siteConfig } from "@/lib/seo";
+import { notFound } from "next/navigation";
+
+function getCaseStudy(slug: string) {
+    return productData.find((item) => item.slug === slug);
+}
+
+function formatList(items: string[], limit = 3) {
+    const uniqueItems = [...new Set(items.filter(Boolean))];
+
+    if (uniqueItems.length <= limit) {
+        return uniqueItems.join(", ");
+    }
+
+    return `${uniqueItems.slice(0, limit).join(", ")}, and more`;
+}
+
+function getCaseStudyDescription(data: (typeof productData)[number]) {
+    return `Explore how ${data.name} used Sellora for ${formatList(data.type).toLowerCase()} in ${formatList(data.color)} with ${data.print.toLowerCase()} customization.`;
+}
+
+export async function generateMetadata({
+    params,
+}: {
+    params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+    const { slug } = await params;
+    const data = getCaseStudy(slug);
+
+    if (!data) {
+        return createPageMetadata({
+            title: "Case Study Not Found",
+            description: "The case study you requested could not be found on Sellora.",
+            path: `/case_study/${slug}`,
+            noIndex: true,
+        });
+    }
+
+    return createPageMetadata({
+        title: `${data.name} Case Study`,
+        description: getCaseStudyDescription(data),
+        path: `/case_study/${data.slug}`,
+        image: data.productImg[0] ?? data.bgUrl ?? siteConfig.defaultImage,
+        keywords: [data.name, ...data.tag, ...data.type, ...data.color, ...data.size],
+        type: "article",
+    });
+}
 
 const page = async ({ params }: { params: Promise<{ slug: string }> }) => {
 
     const { slug } = await params;
-    const data = productData.find(item => item.slug === slug)
+    const data = getCaseStudy(slug)
 
     if (!data) {
-        return <div className='h-[90vh] flex items-center justify-center'>
-            no data found
-        </div>
+        notFound();
     }
     return (
         <div className='mt-12 '>

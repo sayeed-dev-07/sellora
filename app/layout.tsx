@@ -3,6 +3,7 @@ import {  Noto_Sans_JP, Outfit,  } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { getMetadataBase, siteConfig } from "@/lib/seo";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -16,8 +17,46 @@ const notoSans = Noto_Sans_JP({
 });
 
 export const metadata: Metadata = {
-  title: "Sellora",
-  description: "Sellora is a cutting-edge e-commerce platform that empowers businesses to create stunning online stores with ease. With its user-friendly interface and powerful features, Sellora enables entrepreneurs to showcase their products, manage inventory, and provide seamless shopping experiences for customers. Whether you're a small boutique or a large enterprise, Sellora offers the tools you need to succeed in the competitive world of online retail.",
+  metadataBase: getMetadataBase(),
+  title: {
+    default: siteConfig.name,
+    template: `%s | ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  applicationName: siteConfig.name,
+  keywords: [...siteConfig.keywords],
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: siteConfig.name,
+    description: siteConfig.description,
+    url: "/",
+    siteName: siteConfig.name,
+    locale: siteConfig.locale,
+    type: "website",
+    images: [siteConfig.defaultImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.name,
+    description: siteConfig.description,
+    images: [siteConfig.defaultImage],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  category: "fashion",
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
 };
 
 export default function RootLayout({

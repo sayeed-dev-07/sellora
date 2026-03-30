@@ -17,7 +17,7 @@ const Slogan = () => {
                      Wear the Difference 
                 </h1>
                 <div className='flex items-center justify-center py-3 sm:py-[5%]'>
-                    <Link href={'order'} className='px-3 cursor-pointer bg-secondary py-1  border uppercase font-semibold text-lg sm:text-2xl rounded-sm '>Order Now</Link>
+                    <Link href={'/#products'} className='px-3 cursor-pointer bg-secondary py-1  border uppercase font-semibold text-lg sm:text-2xl rounded-sm '>Order Now</Link>
 
                 </div>
             </div>
