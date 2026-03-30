@@ -12,7 +12,7 @@ import { useRouter } from "next/navigation"
 gsap.registerPlugin(Draggable, InertiaPlugin)
 
 const AUTOPLAY_DELAY = 4000
-const MOBILE_AUTOPLAY_DELAY = 2600
+const MOBILE_AUTOPLAY_DELAY = 4000
 const MOBILE_BREAKPOINT = 768
 
 const getMotionConfig = (viewportWidth: number) => {
