@@ -1,5 +1,6 @@
 'use client'
 import { dataType } from '@/app/order/[slug]/page';
+import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -82,7 +83,7 @@ const OrderPage = ({ data }: { data: dataType }) => {
     const inputClassName = 'h-11 w-full rounded-sm border border-black/20 px-3 text-sm outline-none transition focus:border-black'
     const labelClassName = 'block text-sm font-semibold'
 
-    useEffect(() => {
+    useGSAP(() => {
         if (!isPopupOpen || !popupOverlayRef.current || !popupCardRef.current) return;
 
         const overlay = popupOverlayRef.current
@@ -146,19 +147,19 @@ const OrderPage = ({ data }: { data: dataType }) => {
 
     return (
         <>
-            <div className='px-2 py-[5%] max-w-[1200px] mx-auto font-noto flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between'>
+            <div className='px-2 py-[5%] max-w-[1200px] mx-auto font-noto flex flex-col sm:gap-10 lg:flex-row lg:items-start lg:justify-between'>
                 <div className='flex flex-col gap-y-3 flex-1'>
                 <h2 className='text-4xl font-bold'>Order Form</h2>
                 <p>Select the specifications of the product you want and request a quote in as little as one minute.
                     Specifications that are not on the site, or questions or consultations <Link href="/contact" className='text-[#757575] underline font-bold'>Contact Form</Link>. Please feel free to contact us more.</p>
 
                 {/* from  */}
-                <div className='py-12 flex flex-col gap-y-12'>
+                <div className='sm:py-12 py-5 flex flex-col gap-y-6 sm:gap-y-12'>
                     {/* step 1 */}
                     <div>
-                        <div className='flex items-center gap-x-6
+                        <div className='flex items-start sm:items-center gap-x-3 sm:gap-x-6
                             '>
-                            <div className='px-3 py-1 font-semibold border rounded-sm w-fit bg-secondary'>STEP 1</div>
+                            <div className='px-3 py-1 font-semibold border rounded-sm w-fit bg-secondary text-nowrap'>STEP 1</div>
                             <p className='text-2xl font-semibold'>Choose your product, type, and size</p>
                         </div>
                         <div className='text-lg capitalize flex flex-col gap-y-2'>
@@ -199,9 +200,9 @@ const OrderPage = ({ data }: { data: dataType }) => {
 
                     {/* step 2  */}
                     <div>
-                        <div className='flex items-center gap-x-6
+                        <div className='flex items-start sm:items-center gap-x-3 sm:gap-x-6
                             '>
-                            <div className='px-3 py-1 font-semibold border rounded-sm w-fit bg-secondary'>STEP 2</div>
+                            <div className='px-3 py-1 font-semibold border rounded-sm w-fit bg-secondary text-nowrap '>STEP 2</div>
                             <p className='text-2xl font-semibold'>Choose a print color</p>
                         </div>
                         <div className='py-6 flex gap-3 flex-wrap'>
@@ -237,9 +238,9 @@ const OrderPage = ({ data }: { data: dataType }) => {
 
                     {/* step 3 */}
                     <div>
-                        <div className='flex items-center gap-x-6
+                        <div className='flex items-start sm:items-center gap-x-3 sm:gap-x-6
                             '>
-                            <div className='px-3 py-1 font-semibold border rounded-sm w-fit bg-secondary'>STEP 3</div>
+                            <div className='px-3 py-1 font-semibold border rounded-sm w-fit bg-secondary text-nowrap'>STEP 3</div>
                             <p className='text-2xl font-semibold'>Enter quantity</p>
                         </div>
                         <div className='pt-6 text-xl flex items-center  gap-3 flex-wrap'>
@@ -263,9 +264,9 @@ const OrderPage = ({ data }: { data: dataType }) => {
 
                     {/* step 4  */}
                     <div>
-                        <div className='flex items-center gap-x-6
+                        <div className='flex items-start sm:items-center gap-x-3 sm:gap-x-6
                             '>
-                            <div className='px-3 py-1 font-semibold border rounded-sm w-fit bg-secondary'>STEP 4</div>
+                            <div className='px-3 py-1 font-semibold border rounded-sm w-fit bg-secondary text-nowrap'>STEP 4</div>
                             <p className='text-2xl font-semibold'>Enter your customer information</p>
                         </div>
 
@@ -403,7 +404,7 @@ const OrderPage = ({ data }: { data: dataType }) => {
                 </div>
             </div>
             <div className='w-full lg:max-w-[250px] lg:sticky lg:top-8'>
-                <p>Specification under selection</p>
+                <p className='text-xl font-semibold'>Specification under selection</p>
                 <div className='w-full border rounded-lg p-4 mt-4'>
                     {
                         Object.entries(formData).map(([key, value]) => (

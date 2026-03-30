@@ -29,9 +29,7 @@ export default function RootLayout({
       <body
         className={`${notoSans.variable} ${outfit.variable} antialiased`}
       >
-        <div className="sticky top-0 left-0 z-999 bg-[#ffffff75]">
-          <Navbar/>
-        </div>
+        <Navbar />
         <div className="">
           {children}
         </div>

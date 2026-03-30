@@ -11,14 +11,24 @@ import Slogan from "@/components/SloganSection/Slogan";
 export default function page() {
   return (
     <div className="overflow-hidden ">
-        <Home/>
+        <section id="home">
+          <Home/>
+        </section>
         <News/>
-        <Feature/>
+        <section id="features" className="scroll-mt-28">
+          <Feature/>
+        </section>
         <Marquee/>
-        <Products/>
+        <section id="products" className="scroll-mt-28">
+          <Products/>
+        </section>
         <Marquee/>
-        <OrderFlow/>
-        <CaseStudy/>
+        <section id="order-flow" className="scroll-mt-28">
+          <OrderFlow/>
+        </section>
+        <section id="use-cases" className="scroll-mt-28">
+          <CaseStudy/>
+        </section>
         <Slogan/>
     </div>
   );

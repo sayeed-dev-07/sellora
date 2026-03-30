@@ -24,7 +24,7 @@ const Slogan = () => {
         </div>
         <div className='text-xl py-6 flex text-center items-center justify-center gap-x-4 border-b flex-wrap gap-y-2'>
             <p>For questions or consultations, please click here</p>
-           <Link href={'contact-us'} className='px-3 cursor-pointer bg-secondary py-1  border uppercase font-semibold text-lg sm:text-2xl rounded-sm '>contact us</Link>
+           <Link href={'contact'} className='px-3 cursor-pointer bg-secondary py-1  border uppercase font-semibold text-lg sm:text-2xl rounded-sm '>contact us</Link>
         </div>
         </>
     );
