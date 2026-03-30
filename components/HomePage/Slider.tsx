@@ -21,7 +21,7 @@ const getMotionConfig = (viewportWidth: number) => {
   return {
     isSmallScreen,
     autoplayDelay: isSmallScreen ? MOBILE_AUTOPLAY_DELAY : AUTOPLAY_DELAY,
-    slideDuration:  1,
+    slideDuration: isSmallScreen ? 0.6 : 1,
     entranceTrackDuration: isSmallScreen ? 0.55 : 0.8,
     entranceHandDuration: isSmallScreen ? 0.45 : 0.75,
   }
@@ -285,25 +285,25 @@ const Slider = ({
     if (entrancePlayedRef.current) return
     entrancePlayedRef.current = true
 
-    const tl = gsap.timeline({defaults: {ease: 'power3.in'}})
+    const tl = gsap.timeline({ defaults: { ease: 'power3.in' } })
 
     tl.to(dotsRef.current, {
       autoAlpha: 1,
       y: 0,
       duration: 0.35,
-      
+
     })
       .to(track.current, {
         autoAlpha: 1,
         y: 0,
         duration: getMotionConfig(window.innerWidth).entranceTrackDuration,
-        
+
       }, "+=0.05")
       .to(handSection.current, {
         autoAlpha: 1,
         x: 0,
         duration: getMotionConfig(window.innerWidth).entranceHandDuration,
-        
+
       }, "-=0.2")
   }, { scope: container, dependencies: [homeDone, skipEntranceAnimation] })
 
@@ -333,7 +333,7 @@ const Slider = ({
     }
 
     const cardEl = event.currentTarget
-    
+
     gsap.killTweensOf(cardEl)
 
     router.push(`/case_study/${slug}`)
@@ -472,8 +472,8 @@ const Slider = ({
               key={i}
               onClick={() => goTo(i)}
               className={` h-2 rounded-full transition-all cursor-pointer duration-300 ${active
-                  ? "sm:w-10 w-7 bg-black"
-                  : "sm:w-5 w-3 bg-secondary border border-background"
+                ? "sm:w-10 w-7 bg-black"
+                : "sm:w-5 w-3 bg-secondary border border-background"
                 }`}
             />
           )
