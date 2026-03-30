@@ -274,7 +274,7 @@ const Navbar = () => {
                         </span>
                         <span className='absolute inset-0 flex items-center justify-center gap-[0.18em]'>
                             {closeWord.map((letter, index) => (
-                                <span key={`close-${letter}-${index}`} className='mobile-close-letter inline-block'>
+                                <span key={`close-${letter}-${index}`} className='mobile-close-letter invisible inline-block opacity-0'>
                                     {letter}
                                 </span>
                             ))}
@@ -285,7 +285,8 @@ const Navbar = () => {
                 <div
                     id='mobile-nav-panel'
                     ref={mobilePanelRef}
-                    className='mobile-menu-panel absolute inset-x-0 top-full border-t border-black/10 bg-white/95 px-4 pb-6 pt-4 shadow-[0_18px_45px_rgba(0,0,0,0.12)] backdrop-blur-xl lg:hidden'
+                    aria-hidden={!isMobileMenuOpen}
+                    className='mobile-menu-panel invisible absolute inset-x-0 top-full border-t border-black/10 bg-white/95 px-4 pb-6 pt-4 opacity-0 shadow-[0_18px_45px_rgba(0,0,0,0.12)] backdrop-blur-xl lg:hidden'
                 >
                     <nav className='flex flex-col gap-y-2'>
                         {navItems.map((item) => (
