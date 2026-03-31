@@ -168,7 +168,7 @@ const OrderPage = ({ data }: { data: dataType }) => {
                             </div>
 
                             {/* type  */}
-                            <div className='flex gap-x-2 mt-5'>
+                            <div className='flex gap-x-2 mt-5 flex-wrap gap-y-2'>
                                 {
                                     data.types.map((item, indx) => {
                                         return <div key={indx} className={`relative w-[100px] h-[100px] ${formData.type === item.name ? 'border-2 border-primary' : 'border'} rounded-lg p-1 cursor-pointer`} onClick={() => setFormData({ ...formData, type: item.name })}>
@@ -179,12 +179,12 @@ const OrderPage = ({ data }: { data: dataType }) => {
                             </div>
 
                             {/* sizee  */}
-                            <div className='flex flex-col gap-y-3 mt-4'>
+                            <div className='flex  flex-col gap-y-3 mt-4'>
                                 <p className=''>
                                     <span className='font-semibold '>Size: </span>
                                     {formData.size} size
                                 </p>
-                                <div className='flex gap-x-2'>
+                                <div className='flex gap-x-2 flex-wrap gap-y-2'>
                                     {
                                         data.size.map((item, index) => {
                                             return <div onClick={() => setFormData({ ...formData, size: item })} className={`px-6 ${formData.size === item ? 'border-2' : 'border'} max-w-[140px] w-full text-center cursor-pointer`} key={index}>
