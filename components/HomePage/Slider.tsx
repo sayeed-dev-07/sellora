@@ -14,6 +14,11 @@ gsap.registerPlugin(Draggable, InertiaPlugin)
 const AUTOPLAY_DELAY = 4000
 const MOBILE_AUTOPLAY_DELAY = 4000
 const MOBILE_BREAKPOINT = 768
+const AUTOPLAY_SLIDE_DURATION = 1
+const DESKTOP_INTERACTION_SLIDE_DURATION = 1
+const MOBILE_INTERACTION_SLIDE_DURATION = 0.85
+
+type SlideTrigger = "autoplay" | "interaction"
 
 const getMotionConfig = (viewportWidth: number) => {
   const isSmallScreen = viewportWidth < MOBILE_BREAKPOINT
@@ -21,7 +26,10 @@ const getMotionConfig = (viewportWidth: number) => {
   return {
     isSmallScreen,
     autoplayDelay: isSmallScreen ? MOBILE_AUTOPLAY_DELAY : AUTOPLAY_DELAY,
-    slideDuration: isSmallScreen ? 0.45 : 1,
+    autoplaySlideDuration: AUTOPLAY_SLIDE_DURATION,
+    interactionSlideDuration: isSmallScreen
+      ? MOBILE_INTERACTION_SLIDE_DURATION
+      : DESKTOP_INTERACTION_SLIDE_DURATION,
     entranceTrackDuration: isSmallScreen ? 0.8 : 0.8,
     entranceHandDuration: isSmallScreen ? 0.75 : 0.75,
   }
@@ -43,7 +51,7 @@ const Slider = ({
   const dotsRef = useRef<HTMLDivElement | null>(null)
   const draggableRef = useRef<Draggable | null>(null)
   const autoplayRef = useRef<ReturnType<typeof setInterval> | null>(null)
-  const centerCardRef = useRef<(index: number, animate?: boolean) => void>(() => { })
+  const centerCardRef = useRef<(index: number, animate?: boolean, trigger?: SlideTrigger) => void>(() => { })
   const resetAutoplayRef = useRef<() => void>(() => { })
   const entrancePlayedRef = useRef(false)
   const isNavigatingRef = useRef(false)
@@ -149,7 +157,7 @@ const Slider = ({
       handMaxX = handViewportCenter - handWidth / 2
     }
 
-    function centerCard(index: number, animate = true) {
+    function centerCard(index: number, animate = true, trigger: SlideTrigger = "interaction") {
       indexRef.current = index
       setActiveIndex(index)
 
@@ -166,7 +174,9 @@ const Slider = ({
       trackTweenRef.current?.kill()
       trackTweenRef.current = gsap.to(trackEl, {
         x,
-        duration: motion.slideDuration,
+        duration: trigger === "autoplay"
+          ? motion.autoplaySlideDuration
+          : motion.interactionSlideDuration,
         ease: "power3.out",
         onUpdate: () => {
           const currentX = Number(gsap.getProperty(trackEl, "x"))
@@ -182,7 +192,7 @@ const Slider = ({
     function nextCard() {
       let next = indexRef.current + 1
       if (next > cards.length - 1) next = 0
-      centerCard(next)
+      centerCard(next, true, "autoplay")
     }
 
     function resetAutoplay() {
@@ -233,7 +243,7 @@ const Slider = ({
         let next = indexRef.current + move * direction
         next = Math.max(0, Math.min(cards.length - 1, next))
 
-        centerCard(next)
+        centerCard(next, true, "interaction")
         return viewportCenter - (next * spacing + cardWidth / 2)
       }
     })[0]

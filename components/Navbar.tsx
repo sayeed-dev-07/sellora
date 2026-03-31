@@ -231,7 +231,7 @@ const Navbar = () => {
     return (
         <header
             ref={navRef}
-            className='sticky top-0 left-0 z-999 border-b border-black/5 bg-[#ffffff75] backdrop-blur-sm'
+            className='sticky top-0 left-0 z-998 border-b border-black/5 bg-[#ffffff75] backdrop-blur-sm'
         >
             <div className='relative mx-auto flex h-[10vh] items-center justify-between px-2 py-3 sm:px-4'>
                 <Link href='/' className='cursor-pointer p-3' onClick={closeMobileMenu}>
